@@ -5,7 +5,7 @@ Summary(pl):	Program do rysowania pod X11
 Summary(tr):	X11 çizim aracý
 Name:		xfig
 Version:	3.2.3c
-Release:	9
+Release:	10
 License:	Freeware
 Group:		X11/Applications/Graphics
 Group(de):	X11/Applikationen/Grafik
