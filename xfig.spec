@@ -8,6 +8,7 @@ Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
 Source:		ftp://ftp.x.org/contrib/applications/drawing_tools/xfig/%{name}.%{version}.tar.gz
 Patch0:		xfig-config.patch
+Patch1:		xfig-vararg.patch
 Requires:	transfig >= 3.2
 Buildroot:	/tmp/%{name}-%{version}-root
 
@@ -24,6 +25,7 @@ jak: linie, krzywe bezier czy inne.
 %prep
 %setup -q -n %{name}.%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 xmkmf
