@@ -25,24 +25,6 @@ diff -Nur xfig.3.2.3c.orig/Imakefile xfig.3.2.3c/Imakefile
 diff -Nur xfig.3.2.3c.orig/f_read.c xfig.3.2.3c/f_read.c
 --- xfig.3.2.3c.orig/f_read.c	Sun Apr  8 14:19:34 2001
 +++ xfig.3.2.3c/f_read.c	Sun Apr  8 20:00:50 2001
-@@ -15,6 +15,7 @@
-  *
-  */
- 
-+#include <locale.h>
- #include "fig.h"
- #include "figx.h"
- #include "resources.h"
-@@ -204,7 +205,9 @@
-     else {
- 	if (!update_figs)
- 	    put_msg("Reading objects from \"%s\" ...", file_name);
-+	setlocale(LC_NUMERIC, "C");
- 	status = readfp_fig(fp, obj, merge, xoff, yoff, settings);
-+	setlocale(LC_NUMERIC, "");
- 	/* so subsequent file_msg() calls don't print wrong file name */
- 	first_file_msg = False;
- 	return status;
 diff -Nur xfig.3.2.3c.orig/f_save.c xfig.3.2.3c/f_save.c
 --- xfig.3.2.3c.orig/f_save.c	Mon Jul  3 23:37:21 2000
 +++ xfig.3.2.3c/f_save.c	Sun Apr  8 19:52:38 2001
