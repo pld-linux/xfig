@@ -56,4 +56,5 @@ Exec=xfig
 Icon=xfig.png
 Type=Application
 MapNotify=false
+Encoding=UTF-8
 # vi: encoding=utf-8
