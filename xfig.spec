@@ -10,6 +10,7 @@ License:	Freeware
 Group:		X11/Applications/Graphics
 Group(de):	X11/Applikationen/Grafik
 Group(pl):	X11/Aplikacje/Grafika
+Group(pt):	X11/Aplicações/Gráficos
 Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
@@ -59,6 +60,7 @@ olanak verir.
 
 %build
 xmkmf
+perl -p -i -e 's-LN. Doc/-LN) -' Makefile
 %{__make} CDEBUGFLAGS="%{rpmcflags}" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
 	LOCAL_LDFLAGS="%{rpmldflags}"
