@@ -4,10 +4,12 @@ Summary(es):	Herramienta para diseЯo X11
 Summary(fr):	Outil de dessin sous X11
 Summary(pl):	Program do rysowania pod X11
 Summary(pt_BR):	Ferramenta para desenho X11
+Summary(ru):	Инструмент для рисования простой векторной графики
 Summary(tr):	X11 Гizim aracЩ
+Summary(uk):	╤нструмент для малювання просто╖ векторно╖ граф╕ки
 Name:		xfig
 Version:	3.2.3d
-Release:	6
+Release:	7
 License:	Freeware
 Group:		X11/Applications/Graphics
 Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
@@ -56,10 +58,23 @@ linie, krzywe bezier i wiele innych.
 Este programa oferece tudo o que vocЙ precisa para criar grАficos com
 vetores, incluindo curvas, linhas, rИguas, e mais.
 
+%description -l ru
+Xfig - это инструмент для создания базовой векторной графики, включая
+кривые Безье, линии и многое другое. Полученную графику можно
+сохранить, распечатать на PostScript принтерах или сконвертировать в
+другие форматы (например, X11 bitmaps, Encapsulated PostScript,
+LaTeX).
+
 %description -l tr
 Bu program, en temel olanlarЩndan ileri dЭzeydekilere kadar tЭm belli
 baЧlЩ vektЖr grafikleri (doПrular, bezier eПrisi vs) Гizebilmenize
 olanak verir.
+
+%description -l uk
+Xfig - це ╕нструмент для створення базово╖ векторно╖ граф╕ки,
+включаючи крив╕ Без'╓, л╕н╕╖ та ╕нше. Отриману граф╕ку можна зберегти,
+роздрукувати на PostScript принтерах чи зконвертувати в ╕нш╕ формати
+(наприклад, X11 bitmaps, Encapsulated PostScript, LaTeX).
 
 %prep
 %setup -q -n %{name}.%{version}
