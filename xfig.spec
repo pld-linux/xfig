@@ -108,7 +108,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/X11/xfig/Libraries/*/README
 
 (
 cat $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
-tail +2 $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig-color
+tail -n +2 $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig-color
 echo 'Fig.inches: off'
 ) 	> $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new
 mv -f $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new \
