@@ -27,26 +27,27 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 This program gives you all the features you need to create basic- to
 intermediate-level vector graphics, including bezier curves, lines,
-rulers, and more. 
+rulers, and more.
 
 %description -l de
 Dieses Programm bietet sämtliche Funktionen, die Sie zum Erstellen von
-elementaren und fortgeschrittenen Vektorgrafiken benötigen, einschließlich
-Bezier-Kurven, Linien, Lineale und anderes.
+elementaren und fortgeschrittenen Vektorgrafiken benötigen,
+einschließlich Bezier-Kurven, Linien, Lineale und anderes.
 
 %description -l fr
-Ce programme vous offre tout ce dont vous avez besoin pour créer des graphiques
-vectoriels, de base à moyennement complexes. Il comprend les courbes de Bézier,
-les lignes, les règles etc.
+Ce programme vous offre tout ce dont vous avez besoin pour créer des
+graphiques vectoriels, de base à moyennement complexes. Il comprend
+les courbes de Bézier, les lignes, les règles etc.
 
 %description -l pl
 Program xfig udostêpnia Ci wszystkie narzêdzia grafik wektorowych
-sk³adaj±cych siê z prostych i zaawansowanych elementów wektorowych
-jak linie, krzywe bezier i wiele innych.
+sk³adaj±cych siê z prostych i zaawansowanych elementów wektorowych jak
+linie, krzywe bezier i wiele innych.
 
 %description -l tr
-Bu program, en temel olanlarýndan ileri düzeydekilere kadar tüm belli baþlý
-vektör grafikleri (doðrular, bezier eðrisi vs) çizebilmenize olanak verir.
+Bu program, en temel olanlarýndan ileri düzeydekilere kadar tüm belli
+baþlý vektör grafikleri (doðrular, bezier eðrisi vs) çizebilmenize
+olanak verir.
 
 %prep
 %setup -q -n %{name}.%{version}
