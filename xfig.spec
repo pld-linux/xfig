@@ -1,7 +1,9 @@
 Summary:	X11 drawing tool
 Summary(de):	X11-Zeichen-Tool
+Summary(es):	Herramienta para diseño X11
 Summary(fr):	Outil de dessin sous X11
 Summary(pl):	Program do rysowania pod X11
+Summary(pt_BR):	Ferramenta para desenho X11
 Summary(tr):	X11 çizim aracý
 Name:		xfig
 Version:	3.2.3d
@@ -38,6 +40,10 @@ Dieses Programm bietet sämtliche Funktionen, die Sie zum Erstellen von
 elementaren und fortgeschrittenen Vektorgrafiken benötigen,
 einschließlich Bezier-Kurven, Linien, Lineale und anderes.
 
+%description -l es
+Este programa ofrece todo lo que necesitas para crear gráficos con vectores,
+incluyendo curvas, líneas, reglas, y más.
+
 %description -l fr
 Ce programme vous offre tout ce dont vous avez besoin pour créer des
 graphiques vectoriels, de base à moyennement complexes. Il comprend
@@ -47,6 +53,11 @@ les courbes de Bézier, les lignes, les règles etc.
 Program xfig udostêpnia Ci wszystkie narzêdzia grafik wektorowych
 sk³adaj±cych siê z prostych i zaawansowanych elementów wektorowych jak
 linie, krzywe bezier i wiele innych.
+
+%description -l pt_BR
+Este programa oferece tudo o que você precisa para criar gráficos com
+vetores,                                                    incluindo
+curvas, linhas, réguas, e mais. 
 
 %description -l tr
 Bu program, en temel olanlarýndan ileri düzeydekilere kadar tüm belli
@@ -73,7 +84,7 @@ Dokumentacja on-line programu xfig.
 %patch1 -p1
 
 %build
-xmkmf
+xmkmf -a
 perl -p -i -e 's-LN. Doc/-LN) -' Makefile
 %{__make} CDEBUGFLAGS="%{rpmcflags}" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
