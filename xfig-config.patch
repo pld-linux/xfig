@@ -1,6 +1,18 @@
-diff -Nru xfig.3.2.3/Imakefile xfig.3.2.3.new/Imakefile
---- xfig.3.2.3/Imakefile	Fri Jan 21 02:45:28 2000
-+++ xfig.3.2.3.new/Imakefile	Fri Jan 21 02:46:22 2000
+diff -Nru xfig.3.2.3c/Fig.ad xfig.3.2.3c.new/Fig.ad
+--- xfig.3.2.3c/Fig.ad	Tue Jul 25 19:05:57 2000
++++ xfig.3.2.3c.new/Fig.ad	Sat Nov  4 12:26:07 2000
+@@ -16,7 +16,7 @@
+ 
+ ! pdfviewer - put your favorite pdf viewer here.  
+ !		This is for viewing the xfig how-to guide and man pages
+-Fig.pdfviewer:			acroread %f
++Fig.pdfviewer:			xpdf %f
+ 
+ ! Spell check program - put your favorite spelling check program here.
+ !		It must write the misspelled words to standard output.
+diff -Nru xfig.3.2.3c/Imakefile xfig.3.2.3c.new/Imakefile
+--- xfig.3.2.3c/Imakefile	Wed Jul 19 20:14:27 2000
++++ xfig.3.2.3c.new/Imakefile	Sat Nov  4 12:11:14 2000
 @@ -40,8 +40,8 @@
  
  #ifdef USEJPEG
@@ -28,16 +40,7 @@ diff -Nru xfig.3.2.3/Imakefile xfig.3.2.3.new/Imakefile
  #endif
  
  XCOMM Uncomment the following definiton if you want to use the small icons
-@@ -99,7 +99,7 @@
- XCOMM Uncomment the next line if you want use Japanese (i18n) on xfig.
- XCOMM If your setlocale() dosen't support the locale, you should
- XCOMM add -DSETLOCALE to I18N_DEFS.
--XCOMM #define I18N
-+#define I18N
- 
- XCOMM If using an input tablet uncomment the following
- 
-@@ -110,7 +110,7 @@
+@@ -115,7 +115,7 @@
  XCOMM inline functions. With the "INLINE" keyword, you should notice that
  XCOMM the display will be a bit faster in complex figures
  
@@ -46,7 +49,7 @@ diff -Nru xfig.3.2.3/Imakefile xfig.3.2.3.new/Imakefile
  
  XCOMM use (and change) the following if you want the multi-key data base file
  XCOMM somewhere other than the standard X11 library directory
-@@ -189,7 +189,7 @@
+@@ -200,7 +200,7 @@
  #endif /* USEJPEG */
  
  #ifdef I18N
@@ -55,116 +58,3 @@ diff -Nru xfig.3.2.3/Imakefile xfig.3.2.3.new/Imakefile
  I18N_SRC = w_i18n.c
  I18N_OBJ = w_i18n.o
  #endif
-@@ -321,10 +321,10 @@
- XCOMM here with "make install"
- 
- install::
--	@if [ -d $(XFIGLIBDIR) ]; then set +x; \
--		else (set -x; $(MKDIRHIER) $(XFIGLIBDIR) ; set +x; ); fi
--	chmod a+x,u+w $(XFIGLIBDIR)
--	$(INSTALL) -c CompKeyDB $(XFIGLIBDIR)
-+	@if [ -d $(DESTDIR)$(XFIGLIBDIR) ]; then set +x; \
-+		else (set -x; $(MKDIRHIER) $(DESTDIR)$(XFIGLIBDIR) ; set +x; ); fi
-+	chmod a+x,u+w $(DESTDIR)$(XFIGLIBDIR)
-+	$(INSTALL) -c CompKeyDB $(DESTDIR)$(XFIGLIBDIR)
- 	make install.libs
- 	make install.doc
- 
-@@ -336,21 +336,21 @@
- 	@make install.jhtml
- #endif
- 	@(cd Doc ; \
--	echo Copying pdf and html files to $(XFIGLIBDIR) ; \
--	$(INSTALL) -c xfig.html $(XFIGLIBDIR) ; \
--	$(INSTALL) -c xfig-howto.pdf $(XFIGLIBDIR) ; \
--	if [ -d $(XFIGLIBDIR)/html ]; then set +x; \
--	   else (set -x; $(MKDIRHIER) $(XFIGLIBDIR)/html ); fi ; \
-+	echo Copying pdf and html files to $(DESTDIR)$(XFIGLIBDIR) ; \
-+	$(INSTALL) -c xfig.html $(DESTDIR)$(XFIGLIBDIR) ; \
-+	$(INSTALL) -c xfig-howto.pdf $(DESTDIR)$(XFIGLIBDIR) ; \
-+	if [ -d $(DESTDIR)$(XFIGLIBDIR)/html ]; then set +x; \
-+	   else (set -x; $(MKDIRHIER) $(DESTDIR)$(XFIGLIBDIR)/html ); fi ; \
- 	(cd html ; \
- 	   for f in *.* ; do \
--	      $(INSTALL) -c $$f $(XFIGLIBDIR)/html ; \
-+	      $(INSTALL) -c $$f $(DESTDIR)$(XFIGLIBDIR)/html ; \
- 	   done) ; \
- 	echo "  Copying image files for html" ; \
--	if [ -d $(XFIGLIBDIR)/html/images ]; then set +x; \
--	   else (set -x; $(MKDIRHIER) $(XFIGLIBDIR)/html/images ); fi ; \
-+	if [ -d $(DESTDIR)$(XFIGLIBDIR)/html/images ]; then set +x; \
-+	   else (set -x; $(MKDIRHIER) $(DESTDIR)$(XFIGLIBDIR)/html/images ); fi ; \
- 	(cd html/images ; \
- 	   for f in * ; do \
--	       $(INSTALL) -c $$f $(XFIGLIBDIR)/html/images ; \
-+	       $(INSTALL) -c $$f $(DESTDIR)$(XFIGLIBDIR)/html/images ; \
- 	   done) ; \
- 	) ;
- 
-@@ -358,48 +358,48 @@
- install.jhtml::
- 	@echo "Copying japanese html files"
- 	@(cd Doc/html/japanese ; \
--	if [ -d $(XFIGLIBDIR)/html/japanese ]; then set +x; \
--	   else (set -x; $(MKDIRHIER) $(XFIGLIBDIR)/html/japanese ); fi ; \
-+	if [ -d $(DESTDIR)$(XFIGLIBDIR)/html/japanese ]; then set +x; \
-+	   else (set -x; $(MKDIRHIER) $(DESTDIR)$(XFIGLIBDIR)/html/japanese ); fi ; \
- 	for f in * ; do \
--	      $(INSTALL) -c $$f $(XFIGLIBDIR)/html/japanese ; \
-+	      $(INSTALL) -c $$f $(DESTDIR)$(XFIGLIBDIR)/html/japanese ; \
- 	done) ;
- #endif
- 
- XCOMM Install the object libraries here with "make install.libs"
- install.libs::
- 	@echo "Copying Fig Object Libraries"
--	@if [ -d $(OBJLIBDIR) ]; then set +x; \
--		else (set -x; $(MKDIRHIER) $(OBJLIBDIR) ; set +x; ); fi
-+	@if [ -d $(DESTDIR)$(OBJLIBDIR) ]; then set +x; \
-+		else (set -x; $(MKDIRHIER) $(DESTDIR)$(OBJLIBDIR) ; set +x; ); fi
- 	@if [ -d Examples/Libraries ]; then \
- 	(cd Examples/Libraries ; \
- 	for d in * ;  do \
- 	    (cd $$d ; \
--	    if [ -d $(OBJLIBDIR)/$$d ]; then set +x; \
--		else (set -x; $(MKDIRHIER) $(OBJLIBDIR)/$$d ); fi ; \
--	    echo "  Copying $$d library files to $(OBJLIBDIR)/$$d" ; \
-+	    if [ -d $(DESTDIR)$(OBJLIBDIR)/$$d ]; then set +x; \
-+		else (set -x; $(MKDIRHIER) $(DESTDIR)$(OBJLIBDIR)/$$d ); fi ; \
-+	    echo "  Copying $$d library files to $(DESTDIR)$(OBJLIBDIR)/$$d" ; \
- 	    for f in * ;  do \
- 		if [ -d $$f ]; then ( \
--		    if [ -d $(OBJLIBDIR)/$$d/$$f ]; then set +x; \
--			else (set -x; $(MKDIRHIER) $(OBJLIBDIR)/$$d/$$f ); fi ; \
-+		    if [ -d $(DESTDIR)$(OBJLIBDIR)/$$d/$$f ]; then set +x; \
-+			else (set -x; $(MKDIRHIER) $(DESTDIR)$(OBJLIBDIR)/$$d/$$f ); fi ; \
- 			(cd $$f ; \
- 			for dd in * ; do \
- 			    if [ -d $$dd ]; then ( \
--				if [ -d $(OBJLIBDIR)/$$d/$$f/$$dd ]; then set +x; \
--				    else (set -x; $(MKDIRHIER) $(OBJLIBDIR)/$$d/$$f/$$dd ); fi ; \
-+				if [ -d $(DESTDIR)$(OBJLIBDIR)/$$d/$$f/$$dd ]; then set +x; \
-+				    else (set -x; $(MKDIRHIER) $(DESTDIR)$(OBJLIBDIR)/$$d/$$f/$$dd ); fi ; \
- 				    (cd $$dd ; \
- 				    for l in * ; do \
- 					if [ -d $$l ]; then ( \
--					    if [ -d $(OBJLIBDIR)/$$d/$$f/$$dd/$$l ]; then set +x; \
--						else (set -x; $(MKDIRHIER) $(OBJLIBDIR)/$$d/$$f/$$dd/$$l ); fi ; \
-+					    if [ -d $(DESTDIR)$(OBJLIBDIR)/$$d/$$f/$$dd/$$l ]; then set +x; \
-+						else (set -x; $(MKDIRHIER) $(DESTDIR)$(OBJLIBDIR)/$$d/$$f/$$dd/$$l ); fi ; \
- 					    (cd $$l ; \
- 						for m in * ; do \
--						    $(INSTALL) -c $$m $(OBJLIBDIR)/$$d/$$f/$$dd/$$l ; \
-+						    $(INSTALL) -c $$m $(DESTDIR)$(OBJLIBDIR)/$$d/$$f/$$dd/$$l ; \
- 						done ) ) ; \
--					else ( $(INSTALL) -c $$l $(OBJLIBDIR)/$$d/$$f/$$dd ) ; fi ; \
-+					else ( $(INSTALL) -c $$l $(DESTDIR)$(OBJLIBDIR)/$$d/$$f/$$dd ) ; fi ; \
- 				done) ) ; \
--			    else ( $(INSTALL) -c $$dd $(OBJLIBDIR)/$$d/$$f ) ; fi ; \
-+			    else ( $(INSTALL) -c $$dd $(DESTDIR)$(OBJLIBDIR)/$$d/$$f ) ; fi ; \
- 			done) ); \
--		else ($(INSTALL) -c $$f $(OBJLIBDIR)/$$d ) ; fi ; \
-+		else ($(INSTALL) -c $$f $(DESTDIR)$(OBJLIBDIR)/$$d ) ; fi ; \
- 	    done ) ; \
- 	done ; ) ; \
- 	else echo No Object Libraries to install ; \
