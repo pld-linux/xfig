@@ -71,7 +71,7 @@ xmkmf -a
 perl -p -i -e 's-LN. Doc/-LN) -' Makefile
 %{__make} \
 	CC="%{__cc}" \
-	CDEBUGFLAGS="%{rpmcflags}" \
+	CDEBUGFLAGS="%{rpmcflags} `pkg-config --cflags libpng12 2>/dev/null`" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
 	LOCAL_LDFLAGS="%{rpmldflags}" \
 	XFIGDOCDIR="%{_docdir}/%{name}-doc-%{version}/"
