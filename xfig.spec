@@ -10,9 +10,6 @@ Version:	3.2.3d
 Release:	5
 License:	Freeware
 Group:		X11/Applications/Graphics
-Group(de):	X11/Applikationen/Grafik
-Group(pl):	X11/Aplikacje/Grafika
-Group(pt):	X11/Aplicações/Gráficos
 Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
@@ -68,9 +65,6 @@ olanak verir.
 Summary:	xfig documentation
 Summary(pl):	Dokumentacja xfig
 Group:		X11/Applications/Graphics
-Group(de):	X11/Applikationen/Grafik
-Group(pl):	X11/Aplikacje/Grafika
-Group(pt):	X11/Aplicações/Gráficos
 
 %description doc
 On-line documentation for xfig.
