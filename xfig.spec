@@ -4,7 +4,7 @@ Summary(fr):	Outil de dessin sous X11
 Summary(pl):	Program do rysowania pod X11
 Summary(tr):	X11 çizim aracý
 Name:		xfig
-Version:	3.2.3
+Version:	3.2.3a
 Release:	1
 Copyright:	Freeware
 Group:		X11/Applications/Graphics
