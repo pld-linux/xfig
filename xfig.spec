@@ -112,8 +112,6 @@ echo 'Fig.inches: off'
 mv -f $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new \
 	$RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
 
-gzip -9nf README CHANGES FIGAPPS Doc/TODO Doc/FORMAT*
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
