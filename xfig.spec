@@ -5,7 +5,7 @@ Summary(pl):	Program do rysowania pod X11
 Summary(tr):	X11 çizim aracý
 Name:		xfig
 Version:	3.2.3d
-Release:	4
+Release:	5
 License:	Freeware
 Group:		X11/Applications/Graphics
 Group(de):	X11/Applikationen/Grafik
@@ -53,6 +53,20 @@ Bu program, en temel olanlarýndan ileri düzeydekilere kadar tüm belli
 baþlý vektör grafikleri (doðrular, bezier eðrisi vs) çizebilmenize
 olanak verir.
 
+%package doc
+Summary:	xfig documentation
+Summary(pl):	Dokumentacja xfig
+Group:		X11/Applications/Graphics
+Group(de):	X11/Applikationen/Grafik
+Group(pl):	X11/Aplikacje/Grafika
+Group(pt):	X11/Aplicações/Gráficos
+
+%description doc
+On-line documentation for xfig.
+
+%description -l pl doc
+Dokumentacja on-line programu xfig.
+
 %prep
 %setup -q -n %{name}.%{version}
 %patch0 -p1
@@ -63,7 +77,8 @@ xmkmf
 perl -p -i -e 's-LN. Doc/-LN) -' Makefile
 %{__make} CDEBUGFLAGS="%{rpmcflags}" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
-	LOCAL_LDFLAGS="%{rpmldflags}"
+	LOCAL_LDFLAGS="%{rpmldflags}" \
+	XFIGDOCDIR="%{_docdir}/%{name}-doc-%{version}/"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -85,17 +100,21 @@ echo 'Fig.inches: off'
 mv -f $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new \
 	$RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
 
-gzip -9nf README CHANGES FIGAPPS
+gzip -9nf README CHANGES FIGAPPS Doc/TODO Doc/FORMAT*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc *.gz Doc/*.gz
 %attr(755,root,root) %{_bindir}/xfig
 %{_libdir}/X11/xfig
 %{_libdir}/X11/app-defaults/Fig
 %{_mandir}/man1/*
 %{_pixmapsdir}/*
 %{_applnkdir}/Graphics/xfig.desktop
+
+%files doc
+%defattr(644,root,root,755)
+%doc Doc/html/ Doc/*.html Doc/*.pdf
