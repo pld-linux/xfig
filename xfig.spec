@@ -104,5 +104,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_libdir}/X11/app-defaults/Fig
 %{_mandir}/man1/*
-%{_datadir}/pixmaps/*
+%{_pixmapsdir}/*
 %{_applnkdir}/Graphics/xfig.desktop
