@@ -10,7 +10,7 @@ Summary(uk):	¶ÎÓÔÒÕÍÅÎÔ ÄÌÑ ÍÁÌÀ×ÁÎÎÑ ÐÒÏÓÔÏ§ ×ÅËÔÏÒÎÏ§ ÇÒÁÆ¦ËÉ
 Name:		xfig
 Version:	3.2.5
 %define	_pre	alpha5
-Release:	0.%{_pre}.1
+Release:	0.%{_pre}.2
 License:	Freeware
 Group:		X11/Applications/Graphics
 #Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
@@ -27,17 +27,16 @@ BuildRequires:	XFree86-devel
 BuildRequires:	Xaw3d-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-Requires:	transfig >= 3.2.3c-3
 Requires:	netpbm-progs
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Requires:	transfig >= 3.2.4-3
 Obsoletes:	xfig-doc
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
+%define		_appdefsdir	/usr/X11R6/lib/X11/app-defaults
 
 %description
 This program gives you all the features you need to create basic- to
-intermediate-level vector graphics, including bezier curves, lines,
+intermediate-level vector graphics, including Bezier curves, lines,
 rulers, and more.
 
 %description -l de
@@ -55,9 +54,9 @@ graphiques vectoriels, de base à moyennement complexes. Il comprend
 les courbes de Bézier, les lignes, les règles etc.
 
 %description -l pl
-Program xfig udostêpnia Ci wszystkie narzêdzia grafik wektorowych
-sk³adaj±cych siê z prostych i zaawansowanych elementów wektorowych jak
-linie, krzywe bezier i wiele innych.
+Program xfig udostêpnia wszystkie mo¿liwo¶ci potrzebne do tworzenia
+prostych i ¶redniozaawansowanych grafik wektorowych sk³adaj±cych siê z
+linie, krzywych Beziera i podobnych elementów.
 
 %description -l pt_BR
 Este programa oferece tudo o que você precisa para criar gráficos com
@@ -94,27 +93,30 @@ xmkmf -a
 	CDEBUGFLAGS="%{rpmcflags}" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
 	LOCAL_LDFLAGS="%{rpmldflags}" \
-	XFIGDOCDIR="%{_docdir}/%{name}-%{version}/"
+	XFIGLIBDIR=%{_datadir}/xfig \
+	XFIGDOCDIR=%{_docdir}/%{name}-%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}}
 
 %{__make} install install.man \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	BINDIR=%{_bindir} \
+	MANPATH=%{_mandir} \
+	XFIGLIBDIR=%{_datadir}/xfig
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
-cp -ar Libraries $RPM_BUILD_ROOT%{_prefix}/lib/X11/xfig
-rm -f $RPM_BUILD_ROOT%{_prefix}/lib/X11/xfig/Libraries/*/README
+cp -ar Libraries $RPM_BUILD_ROOT%{_datadir}/xfig
+rm -f $RPM_BUILD_ROOT%{_datadir}/xfig/Libraries/*/README
 
 (
-cat $RPM_BUILD_ROOT%{_prefix}/lib/X11/app-defaults/Fig
-tail -n +2 $RPM_BUILD_ROOT%{_prefix}/lib/X11/app-defaults/Fig-color
+cat $RPM_BUILD_ROOT%{_appdefsdir}/Fig
+tail -n +2 $RPM_BUILD_ROOT%{_appdefsdir}/Fig-color
 echo 'Fig.inches: off'
-) 	> $RPM_BUILD_ROOT%{_prefix}/lib/X11/app-defaults/Fig.new
-mv -f $RPM_BUILD_ROOT%{_prefix}/lib/X11/app-defaults/Fig.new \
-	$RPM_BUILD_ROOT%{_prefix}/lib/X11/app-defaults/Fig
+) 	> $RPM_BUILD_ROOT%{_appdefsdir}/Fig.new
+mv -f $RPM_BUILD_ROOT%{_appdefsdir}/Fig.new $RPM_BUILD_ROOT%{_appdefsdir}/Fig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -123,9 +125,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc Doc/html/ Doc/*.html README CHANGES FIGAPPS Doc/TODO Doc/FORMAT*
 %attr(755,root,root) %{_bindir}/xfig
-%{_prefix}/lib/X11/xfig
-%{_prefix}/lib/X11/app-defaults/Fig
-%{_prefix}/lib/X11/app-defaults/Fig-color
+%{_datadir}/xfig
+%{_appdefsdir}/Fig
+%{_appdefsdir}/Fig-color
 %{_mandir}/man1/*
 %{_pixmapsdir}/*
 %{_desktopdir}/*
