@@ -62,8 +62,8 @@ olanak verir.
 
 %build
 xmkmf
-%{__make} CDEBUGFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}" \
-	CXXDEBUGFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}" \
+%{__make} CDEBUGFLAGS="%{rpmcflags}" \
+	CXXDEBUGFLAGS="%{rpmcflags}" \
 	LOCAL_LDFLAGS="%{!?debug:-s}"
 
 %install
