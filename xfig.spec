@@ -89,6 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/X11/xfig
 %{_libdir}/X11/xfig/CompKeyDB
 %{_libdir}/X11/xfig/Libraries
+%{_libdir}/X11/xfig/xfig*
 %dir %{_libdir}/X11/xfig/html
 %{_libdir}/X11/xfig/html/*.*
 %{_libdir}/X11/xfig/html/images
