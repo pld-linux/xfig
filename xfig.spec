@@ -7,7 +7,7 @@ Summary(pt_BR):	Ferramenta para desenho X11
 Summary(tr):	X11 çizim aracý
 Name:		xfig
 Version:	3.2.3d
-Release:	5
+Release:	6
 License:	Freeware
 Group:		X11/Applications/Graphics
 Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
@@ -23,6 +23,7 @@ BuildRequires:	libpng-devel
 URL:		http://www.xfig.org/
 Requires:	transfig >= 3.2.3c-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsletes:	xfig-doc
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
@@ -60,17 +61,6 @@ Bu program, en temel olanlarýndan ileri düzeydekilere kadar tüm belli
 baþlý vektör grafikleri (doðrular, bezier eðrisi vs) çizebilmenize
 olanak verir.
 
-%package doc
-Summary:	xfig documentation
-Summary(pl):	Dokumentacja xfig
-Group:		X11/Applications/Graphics
-
-%description doc
-On-line documentation for xfig.
-
-%description doc -l pl
-Dokumentacja on-line programu xfig.
-
 %prep
 %setup -q -n %{name}.%{version}
 %patch0 -p1
@@ -79,7 +69,9 @@ Dokumentacja on-line programu xfig.
 %build
 xmkmf -a
 perl -p -i -e 's-LN. Doc/-LN) -' Makefile
-%{__make} CDEBUGFLAGS="%{rpmcflags}" \
+%{__make} \
+	CC="%{__cc}" \
+	CDEBUGFLAGS="%{rpmcflags}" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
 	LOCAL_LDFLAGS="%{rpmldflags}" \
 	XFIGDOCDIR="%{_docdir}/%{name}-doc-%{version}/"
@@ -111,14 +103,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz Doc/*.gz
+%doc *.gz Doc/*.gz Doc/html/ Doc/*.html
 %attr(755,root,root) %{_bindir}/xfig
 %{_libdir}/X11/xfig
 %{_libdir}/X11/app-defaults/Fig
 %{_mandir}/man1/*
 %{_pixmapsdir}/*
 %{_applnkdir}/Graphics/xfig.desktop
-
-%files doc
-%defattr(644,root,root,755)
-%doc Doc/html/ Doc/*.html Doc/*.pdf
