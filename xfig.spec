@@ -9,7 +9,7 @@ Summary(tr):	X11 Гizim aracЩ
 Summary(uk):	╤нструмент для малювання просто╖ векторно╖ граф╕ки
 Name:		xfig
 Version:	3.2.3d
-Release:	7
+Release:	8
 License:	Freeware
 Group:		X11/Applications/Graphics
 Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
@@ -24,6 +24,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 URL:		http://www.xfig.org/
 Requires:	transfig >= 3.2.3c-3
+Requires:	netpbm-progs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	xfig-doc
 
@@ -89,7 +90,7 @@ perl -p -i -e 's-LN. Doc/-LN) -' Makefile
 	CDEBUGFLAGS="%{rpmcflags} `pkg-config --cflags libpng12 2>/dev/null`" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
 	LOCAL_LDFLAGS="%{rpmldflags}" \
-	XFIGDOCDIR="%{_docdir}/%{name}-doc-%{version}/"
+	XFIGDOCDIR="%{_docdir}/%{name}-%{version}/"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -118,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz Doc/*.gz Doc/html/ Doc/*.html
+%doc Doc/html/ Doc/*.html README CHANGES FIGAPPS Doc/TODO Doc/FORMAT*
 %attr(755,root,root) %{_bindir}/xfig
 %{_libdir}/X11/xfig
 %{_libdir}/X11/app-defaults/Fig
