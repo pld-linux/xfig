@@ -2,7 +2,7 @@ Summary:	X11 drawing tool
 Summary(pl):	Program do rysowania pod X11
 Name:		xfig
 Version:	3.2.2
-Release:	6
+Release:	7
 Copyright:	Freeware
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
@@ -66,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/X11/xfig/html/images
 %lang(ja) %{_libdir}/X11/xfig/html/japanese
 
-%config %{_libdir}/X11/app-defaults/*
+%{_libdir}/X11/app-defaults/*
 
 %{_mandir}/man1/*
 
