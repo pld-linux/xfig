@@ -1,43 +1,6 @@
-diff -urN xfig.3.2.3c.org/Imakefile xfig.3.2.3c/Imakefile
---- xfig.3.2.3c.org/Imakefile	Mon Oct 30 19:51:43 2000
-+++ xfig.3.2.3c/Imakefile	Mon Oct 30 19:52:03 2000
-@@ -104,7 +104,7 @@
- XCOMM If your setlocale() dosen't support the locale, you should
- XCOMM add -DSETLOCALE to I18N_DEFS.
- 
--XCOMM #define I18N
-+#define I18N
- 
- XCOMM If using an input tablet uncomment the following
- 
-diff -urN xfig.3.2.3c.org/main.c xfig.3.2.3c/main.c
---- xfig.3.2.3c.org/main.c	Mon Oct 30 19:51:44 2000
-+++ xfig.3.2.3c/main.c	Mon Oct 30 19:54:47 2000
-@@ -631,8 +631,21 @@
-     }
- 
- #ifdef I18N
--    setlocale(LC_ALL, "");
-+    /* don't set LC_ALL here because LC_NUMERIC below won't work. --misiek */
-+    setlocale(LC_COLLATE, "");
-+    setlocale(LC_CTYPE, "");
-+    setlocale(LC_MESSAGES, "");
-+    setlocale(LC_MONETARY, "");
-+    setlocale(LC_TIME, "");
-     setlocale(LC_NUMERIC, "C");
-+#ifdef LC_IDENTIFICATION /* glibc 2.2 */
-+    setlocale(LC_PAPER, "");
-+    setlocale(LC_NAME, "");
-+    setlocale(LC_ADDRESS, "");
-+    setlocale(LC_TELEPHONE, "");
-+    setlocale(LC_MEASUREMENT, "");
-+    setlocale(LC_IDENTIFICATION, "");
-+#endif
-     XtSetLanguageProc(NULL, NULL, NULL);
- #endif  /* I18N */
- 
---- xfig.3.2.3c/Fig.ad.i18n	Thu Aug 24 15:27:35 2000
-+++ xfig.3.2.3c/Fig.ad	Thu Aug 24 15:27:35 2000
+diff -Nur xfig.3.2.3c.orig/Fig.ad xfig.3.2.3c/Fig.ad
+--- xfig.3.2.3c.orig/Fig.ad	Sun Apr  8 14:19:34 2001
++++ xfig.3.2.3c/Fig.ad	Sun Apr  8 14:19:50 2001
 @@ -158,7 +158,7 @@
  
  ! If xfig is compiled with I18N option, you may want to uncomment following line.
@@ -47,3 +10,74 @@ diff -urN xfig.3.2.3c.org/main.c xfig.3.2.3c/main.c
  
  ! Note that you shouldn't remove the following "Fig*international: false".  
  ! It must be there to cancel any *international: true that may defined via xrdb.
+diff -Nur xfig.3.2.3c.orig/Imakefile xfig.3.2.3c/Imakefile
+--- xfig.3.2.3c.orig/Imakefile	Sun Apr  8 14:19:34 2001
++++ xfig.3.2.3c/Imakefile	Sun Apr  8 14:19:50 2001
+@@ -104,7 +104,7 @@
+ XCOMM If your setlocale() dosen't support the locale, you should
+ XCOMM add -DSETLOCALE to I18N_DEFS.
+ 
+-XCOMM #define I18N
++#define I18N
+ 
+ XCOMM If using an input tablet uncomment the following
+ 
+diff -Nur xfig.3.2.3c.orig/f_read.c xfig.3.2.3c/f_read.c
+--- xfig.3.2.3c.orig/f_read.c	Sun Apr  8 14:19:34 2001
++++ xfig.3.2.3c/f_read.c	Sun Apr  8 20:00:50 2001
+@@ -15,6 +15,7 @@
+  *
+  */
+ 
++#include <locale.h>
+ #include "fig.h"
+ #include "figx.h"
+ #include "resources.h"
+@@ -204,7 +205,9 @@
+     else {
+ 	if (!update_figs)
+ 	    put_msg("Reading objects from \"%s\" ...", file_name);
++	setlocale(LC_NUMERIC, "C");
+ 	status = readfp_fig(fp, obj, merge, xoff, yoff, settings);
++	setlocale(LC_NUMERIC, "");
+ 	/* so subsequent file_msg() calls don't print wrong file name */
+ 	first_file_msg = False;
+ 	return status;
+diff -Nur xfig.3.2.3c.orig/f_save.c xfig.3.2.3c/f_save.c
+--- xfig.3.2.3c.orig/f_save.c	Mon Jul  3 23:37:21 2000
++++ xfig.3.2.3c/f_save.c	Sun Apr  8 19:52:38 2001
+@@ -15,6 +15,7 @@
+  *
+  */
+ 
++#include <locale.h>
+ #include "fig.h"
+ #include "resources.h"
+ #include "mode.h"
+@@ -90,6 +91,7 @@
+ 
+     if (!update_figs)
+ 	put_msg("Writing . . .");
++    setlocale(LC_NUMERIC, "C");
+     write_file_header(fp);
+     for (a = objects.arcs; a != NULL; a = a->next) {
+ 	num_object++;
+@@ -115,6 +117,7 @@
+ 	num_object++;
+ 	write_text(fp, t);
+     }
++    setlocale(LC_NUMERIC, "");
+     if (ferror(fp)) {
+ 	fclose(fp);
+ 	return (-1);
+diff -Nur xfig.3.2.3c.orig/main.c xfig.3.2.3c/main.c
+--- xfig.3.2.3c.orig/main.c	Mon Jul 24 18:02:50 2000
++++ xfig.3.2.3c/main.c	Sun Apr  8 14:20:55 2001
+@@ -632,7 +632,6 @@
+ 
+ #ifdef I18N
+     setlocale(LC_ALL, "");
+-    setlocale(LC_NUMERIC, "C");
+     XtSetLanguageProc(NULL, NULL, NULL);
+ #endif  /* I18N */
+ 
