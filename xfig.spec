@@ -22,7 +22,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	Xaw3d-devel
 BuildRequires:	XFree86-devel
 URL:		http://www.xfig.org/
-Requires:	transfig >= 3.2
+Requires:	transfig >= 3.2.3c-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
