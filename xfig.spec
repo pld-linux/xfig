@@ -50,9 +50,10 @@ gzip -9nf $RPM_BUILD_ROOT/usr/X11R6/man/man1/*
 rm -rf $RPM_BUILD_ROOT
 
 %files
-/usr/X11R6/bin/xfig
+%defattr(644, root, root, 755)
+%attr(755, root, root) /usr/X11R6/bin/xfig
 /usr/X11R6/lib/X11/xfig
-/usr/X11R6/man/man1/*
+%attr(644, root,  man) /usr/X11R6/man/man1/*
 %config /usr/X11R6/lib/X11/app-defaults/*
 %config /etc/X11/wmconfig/xfig
 
