@@ -10,7 +10,7 @@ Summary(uk):	╤нструмент для малювання просто╖ векторно╖ граф╕ки
 Name:		xfig
 Version:	3.2.5
 %define	_pre	alpha5
-Release:	0.%{_pre}.3
+Release:	0.%{_pre}.4
 License:	Freeware
 Group:		X11/Applications/Graphics
 #Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
