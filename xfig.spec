@@ -12,7 +12,6 @@ Group(pl):	X11/Aplikacje/Grafika
 Source0:	http://www.xfig.org/xfigdist//%{name}.%{version}.tar.gz
 Source1:	xfig.desktop
 Patch0:		xfig-config.patch
-Patch1:		xfig-vararg.patch
 Icon:		xfig.xpm
 BuildRequires:	libjpeg-devel
 BuildRequires:	Xaw3d-devel
