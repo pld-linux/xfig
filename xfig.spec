@@ -5,8 +5,8 @@ Summary(pl):	Program do rysowania pod X11
 Summary(tr):	X11 çizim aracý
 Name:		xfig
 Version:	3.2.3c
-Release:	4
-Copyright:	Freeware
+Release:	5
+License:	Freeware
 Group:		X11/Applications/Graphics
 Group(de):	X11/Applikationen/Grafik
 Group(pl):	X11/Aplikacje/Grafika
@@ -19,7 +19,6 @@ Icon:		xfig.xpm
 BuildRequires:	libjpeg-devel
 BuildRequires:	Xaw3d-devel
 BuildRequires:	XFree86-devel
-BuildRequires:	xpm-devel
 URL:		http://www.xfig.org/
 Requires:	transfig >= 3.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
