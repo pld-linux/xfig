@@ -57,4 +57,5 @@ Icon=xfig.png
 Type=Application
 MapNotify=false
 Encoding=UTF-8
+Categories=Graphics;VectorGraphics;
 # vi: encoding=utf-8
