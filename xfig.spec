@@ -9,7 +9,7 @@ Summary(tr):	X11 Гizim aracЩ
 Summary(uk):	╤нструмент для малювання просто╖ векторно╖ граф╕ки
 Name:		xfig
 Version:	3.2.4
-Release:	1
+Release:	2
 License:	Freeware
 Group:		X11/Applications/Graphics
 Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
@@ -96,23 +96,23 @@ xmkmf -a
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Graphics,%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Graphics,%{_pixmapsdir},%{_libdir}}
 
 %{__make} install install.man \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Graphics
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
-cp -ar Libraries $RPM_BUILD_ROOT%{_libdir}/X11/xfig
-rm -f $RPM_BUILD_ROOT%{_libdir}/X11/xfig/Libraries/*/README
+cp -ar Libraries $RPM_BUILD_ROOT%{_prefix}/lib/X11/xfig
+rm -f $RPM_BUILD_ROOT%{_prefix}/lib/X11/xfig/Libraries/*/README
 
 (
-cat $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
-tail -n +2 $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig-color
+cat $RPM_BUILD_ROOT%{_prefix}/lib/X11/app-defaults/Fig
+tail -n +2 $RPM_BUILD_ROOT%{_prefix}/lib/X11/app-defaults/Fig-color
 echo 'Fig.inches: off'
-) 	> $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new
-mv -f $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new \
-	$RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
+) 	> $RPM_BUILD_ROOT%{_prefix}/lib/X11/app-defaults/Fig.new
+mv -f $RPM_BUILD_ROOT%{_prefix}/lib/X11/app-defaults/Fig.new \
+	$RPM_BUILD_ROOT%{_prefix}/lib/X11/app-defaults/Fig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -121,9 +121,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc Doc/html/ Doc/*.html README CHANGES FIGAPPS Doc/TODO Doc/FORMAT*
 %attr(755,root,root) %{_bindir}/xfig
-%{_libdir}/X11/xfig
-%{_libdir}/X11/app-defaults/Fig
-%{_libdir}/X11/app-defaults/Fig-color
+%{_prefix}/lib/X11/xfig
+%{_prefix}/lib/X11/app-defaults/Fig
+%{_prefix}/lib/X11/app-defaults/Fig-color
 %{_mandir}/man1/*
 %{_pixmapsdir}/*
 %{_applnkdir}/Graphics/xfig.desktop
