@@ -58,8 +58,8 @@ olanak verir.
 
 %build
 xmkmf
-%{__make} CDEBUGFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" \
-	CXXDEBUGFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" \
+%{__make} CDEBUGFLAGS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}" \
+	CXXDEBUGFLAGS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}" \
 	LOCAL_LDFLAGS="%{!?debug:-s}"
 
 %install
