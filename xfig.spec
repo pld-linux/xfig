@@ -65,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 - spec rewrited for using Buildroot,
 - added using %%{name} and %%{version} in Source,
 - added using $RPM_OPT_FLAGS during compile,
-- added %attr and %defattr macros in %files (allow build package from
+- added %attr and %defattr macros in %files (allows build package from
   non-root account).
 
 * Thu Oct 23 1997 Marc Ewing <marc@redhat.com>
