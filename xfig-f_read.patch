@@ -1,0 +1,278 @@
+diff -Nur xfig.3.2.3c.orig/f_read.c xfig.3.2.3c/f_read.c
+--- xfig.3.2.3c/f_read.c.orig	Mon Jul  3 23:36:56 2000
++++ xfig.3.2.3c/f_read.c	Thu Nov  9 18:12:53 2000
+@@ -73,8 +73,6 @@
+ 
+ /* max number of comments that can be stored with each object */
+ #define MAXCOMMENTS	50
+-/* max length of any comment */
+-#define MAXCOMMLEN	200
+ /* input buffer length */
+ #define	BUF_SIZE	1024
+ 
+@@ -455,12 +453,11 @@
+ 	    if (num_object) {
+ 		file_msg("Color definitions must come before other objects (line %d).",
+ 			line_no);
+-		return (num_object != 0? 0: BAD_FORMAT);	/* ok if any objects have been read */
+ 	    }
+ 	    break;
+ 	case O_POLYLINE:
+ 	    if ((l = read_lineobject(fp)) == NULL)
+-		return (num_object != 0? 0: BAD_FORMAT);	/* ok if any objects have been read */
++		continue;
+ 	    if (ll)
+ 		ll = (ll->next = l);
+ 	    else
+@@ -469,7 +466,7 @@
+ 	    break;
+ 	case O_SPLINE:
+ 	    if ((s = read_splineobject(fp)) == NULL)
+-		return (num_object != 0? 0: BAD_FORMAT);	/* ok if any objects have been read */
++		continue;
+ 	    if (ls)
+ 		ls = (ls->next = s);
+ 	    else
+@@ -478,7 +475,7 @@
+ 	    break;
+ 	case O_ELLIPSE:
+ 	    if ((e = read_ellipseobject()) == NULL)
+-		return (num_object != 0? 0: BAD_FORMAT);	/* ok if any objects have been read */
++		continue;
+ 	    if (le)
+ 		le = (le->next = e);
+ 	    else
+@@ -487,7 +484,7 @@
+ 	    break;
+ 	case O_ARC:
+ 	    if ((a = read_arcobject(fp)) == NULL)
+-		return (num_object != 0? 0: BAD_FORMAT);	/* ok if any objects have been read */
++		continue;
+ 	    if (la)
+ 		la = (la->next = a);
+ 	    else
+@@ -496,7 +493,7 @@
+ 	    break;
+ 	case O_TEXT:
+ 	    if ((t = read_textobject(fp)) == NULL)
+-		return (num_object != 0? 0: BAD_FORMAT);	/* ok if any objects have been read */
++		continue;
+ 	    if (lt)
+ 		lt = (lt->next = t);
+ 	    else
+@@ -505,7 +502,7 @@
+ 	    break;
+ 	case O_COMPOUND:
+ 	    if ((c = read_compoundobject(fp)) == NULL)
+-		return (num_object != 0? 0: BAD_FORMAT);	/* ok if any objects have been read */
++		continue;
+ 	    if (lc)
+ 		lc = (lc->next = c);
+ 	    else
+@@ -625,13 +622,15 @@
+     check_color(&a->fill_color);
+     fix_fillstyle(a);	/* make sure that black/white have legal fill styles */
+ 
++    a->comments = attach_comments();		/* attach any comments */
++
+     /* forward arrow */
+     if (fa) {
+ 	if (read_line(fp) == -1)
+-	    return NULL;
++	    return a;
+ 	if (sscanf(buf, "%d%d%f%f%f", &type, &style, &thickness, &wd, &ht) != 5) {
+ 	    file_msg(Err_incomp, "arc", line_no);
+-	    return NULL;
++	    return a;
+ 	}
+ 	/* throw away any arrow heads on pie-wedge arcs */
+ 	if (a->type == T_OPEN_ARC) {
+@@ -643,10 +642,10 @@
+     /* backward arrow */
+     if (ba) {
+ 	if (read_line(fp) == -1)
+-	    return NULL;
++	    return a;
+ 	if (sscanf(buf, "%d%d%f%f%f", &type, &style, &thickness, &wd, &ht) != 5) {
+ 	    file_msg(Err_incomp, "arc", line_no);
+-	    return NULL;
++	    return a;
+ 	}
+ 	/* throw away any arrow heads on pie-wedge arcs */
+ 	if (a->type == T_OPEN_ARC) {
+@@ -654,7 +653,6 @@
+ 	    a->back_arrow = new_arrow(type, style, thickness, wd, ht);
+ 	}
+     }
+-    a->comments = attach_comments();		/* attach any comments */
+     return a;
+ }
+ 
+@@ -693,65 +691,53 @@
+     while (read_line(fp) > 0) {
+ 	if (sscanf(buf, "%d", &object) != 1) {
+ 	    file_msg(Err_incomp, "compound", line_no);
+-	    free_compound(&com);
++	    free((char *) com);
+ 	    return NULL;
+ 	}
+ 	switch (object) {
+ 	case O_POLYLINE:
+-	    if ((l = read_lineobject(fp)) == NULL) {
+-		free_line(&l);
+-		return NULL;
+-	    }
++	    if ((l = read_lineobject(fp)) == NULL)
++		continue;
+ 	    if (ll)
+ 		ll = (ll->next = l);
+ 	    else
+ 		ll = com->lines = l;
+ 	    break;
+ 	case O_SPLINE:
+-	    if ((s = read_splineobject(fp)) == NULL) {
+-		free_spline(&s);
+-		return NULL;
+-	    }
++	    if ((s = read_splineobject(fp)) == NULL)
++		continue;
+ 	    if (ls)
+ 		ls = (ls->next = s);
+ 	    else
+ 		ls = com->splines = s;
+ 	    break;
+ 	case O_ELLIPSE:
+-	    if ((e = read_ellipseobject()) == NULL) {
+-		free_ellipse(&e);
+-		return NULL;
+-	    }
++	    if ((e = read_ellipseobject()) == NULL)
++		continue;
+ 	    if (le)
+ 		le = (le->next = e);
+ 	    else
+ 		le = com->ellipses = e;
+ 	    break;
+ 	case O_ARC:
+-	    if ((a = read_arcobject(fp)) == NULL) {
+-		free_arc(&a);
+-		return NULL;
+-	    }
++	    if ((a = read_arcobject(fp)) == NULL)
++		continue;
+ 	    if (la)
+ 		la = (la->next = a);
+ 	    else
+ 		la = com->arcs = a;
+ 	    break;
+ 	case O_TEXT:
+-	    if ((t = read_textobject(fp)) == NULL) {
+-		free_text(&t);
+-		return NULL;
+-	    }
++	    if ((t = read_textobject(fp)) == NULL)
++		continue;
+ 	    if (lt)
+ 		lt = (lt->next = t);
+ 	    else
+ 		lt = com->texts = t;
+ 	    break;
+ 	case O_COMPOUND:
+-	    if ((c = read_compoundobject(fp)) == NULL) {
+-		free_compound(&c);
+-		return NULL;
+-	    }
++	    if ((c = read_compoundobject(fp)) == NULL)
++		continue;
+ 	    if (lc)
+ 		lc = (lc->next = c);
+ 	    else
+@@ -761,9 +747,10 @@
+ 	    return com;
+ 	default:
+ 	    file_msg("Incorrect object code at line %d.", line_no);
+-	    return NULL;
++	    continue;
+ 	}			/* switch */
+-    }
++    } /* while (read_line(fp) > 0) */
++
+     if (feof(fp))
+ 	return com;
+     else
+@@ -902,14 +889,17 @@
+     if (l->type == T_PICTURE) {
+ 	char s1[PATH_MAX];
+ 
+-	if (read_line(fp) == -1)
++	if (read_line(fp) == -1) {
++	    free((char *) l);
+ 	    return NULL;
++	}
+ 	if ((l->pic = create_pic()) == NULL) {
+ 	    free((char *) l);
+ 	    return NULL;
+ 	}
+ 	if (sscanf(buf, "%d %s", &l->pic->flipped, s1) != 2) {
+ 	    file_msg(Err_incomp, "Picture Object", line_no);
++	    free((char *) l);
+ 	    return NULL;
+ 	}
+ 	/* if path is relative, convert it to absolute path */
+@@ -928,8 +918,10 @@
+     } else
+ 	l->pic = NULL;
+ 
+-    if ((p = create_point()) == NULL)
++    if ((p = create_point()) == NULL) {
++	free((char *) l);
+ 	return NULL;
++    }
+ 
+     l->points = p;
+     p->next = NULL;
+@@ -1117,6 +1109,7 @@
+             count_lines_correctly(fp);
+             if (fscanf(fp, "%f%f%f%f", &lx, &ly, &rx, &ry) != 4) {
+               file_msg(Err_incomp, "spline", line_no);
++	      free_splinestorage(s);
+               return NULL;
+             }
+           }
+@@ -1336,6 +1329,7 @@
+ 			    /* allow exactly 3 digits following the \ for the octal value */
+ 			    if (sscanf(&s[l+1],"%3o",&num)!=1) {
+ 				file_msg("Error in parsing text string on line.",line_no);
++				free((char *) t);
+ 				return NULL;
+ 			    }
+ 			    buf[n++]= (unsigned char) num;	/* put char in */
+@@ -1357,10 +1351,9 @@
+ 	t->type = T_LEFT_JUSTIFIED;
+     }
+ 
+-    if (strlen(s) <= 1)
+-	{
++    if (strlen(s) <= 1) {
+ 	s[0]=' ';s[1]=0;
+-	}
++    }
+     /* skip first blank from input file by starting at s[1] */
+     if ((t->cstring = new_string(strlen(&s[1]))) == NULL) {
+ 	free((char *) t);
+@@ -1457,11 +1450,12 @@
+ {
+     int		    i;
+ 
++    i=strlen(buf);
+     /* see if we've allocated space for this comment */
+-    if (comments[numcom] == 0)
+-	if ((comments[numcom] = (char*) new_string(MAXCOMMLEN)) == NULL)
++    if (comments[numcom])
++	free(comments[numcom]);
++    if ((comments[numcom] = (char*) new_string(i+1)) == NULL)
+ 	    return -1;
+-    i=strlen(buf);
+     /* remove any newline */
+     if (buf[i-1] == '\n')
+ 	buf[i-1] = '\0';
