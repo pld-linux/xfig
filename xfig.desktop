@@ -40,6 +40,6 @@ Comment[tr]=Xfig çizim uygulaması
 Comment[uk]=Програма для утворення зображень Xfig
 Comment[zh_CN.GB2312]=Xfig 绘图应用程序
 Exec=xfig
-Icon=xfig
+Icon=xfig.png
 Type=Application
 MapNotify=false
