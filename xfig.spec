@@ -8,8 +8,8 @@ Summary(ru):	Инструмент для рисования простой векторной графики
 Summary(tr):	X11 Гizim aracЩ
 Summary(uk):	╤нструмент для малювання просто╖ векторно╖ граф╕ки
 Name:		xfig
-Version:	3.2.3d
-Release:	11
+Version:	3.2.4
+Release:	1
 License:	Freeware
 Group:		X11/Applications/Graphics
 Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
@@ -19,11 +19,11 @@ Patch0:		%{name}-config.patch
 Patch1:		%{name}-i18n.patch
 Patch2:		%{name}-mkstemp.diff
 Icon:		xfig.xpm
+URL:		http://www.xfig.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	Xaw3d-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-URL:		http://www.xfig.org/
 Requires:	transfig >= 3.2.3c-3
 Requires:	netpbm-progs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -86,24 +86,23 @@ Xfig - це ╕нструмент для створення базово╖ векторно╖ граф╕ки,
 
 %build
 xmkmf -a
-perl -p -i -e 's-LN. Doc/-LN) -' Makefile
 %{__make} \
 	CC="%{__cc}" \
-	CDEBUGFLAGS="%{rpmcflags} `pkg-config --cflags libpng12 2>/dev/null`" \
+	CDEBUGFLAGS="%{rpmcflags}" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
 	LOCAL_LDFLAGS="%{rpmldflags}" \
 	XFIGDOCDIR="%{_docdir}/%{name}-%{version}/"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Graphics,%{_datadir}/pixmaps}
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Graphics,%{_pixmapsdir}}
 
 %{__make} install install.man \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Graphics
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/pixmaps
-cp -ar Examples/Libraries $RPM_BUILD_ROOT%{_libdir}/X11/xfig
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+cp -ar Libraries $RPM_BUILD_ROOT%{_libdir}/X11/xfig
 rm -f $RPM_BUILD_ROOT%{_libdir}/X11/xfig/Libraries/*/README
 
 (
@@ -123,6 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/xfig
 %{_libdir}/X11/xfig
 %{_libdir}/X11/app-defaults/Fig
+%{_libdir}/X11/app-defaults/Fig-color
 %{_mandir}/man1/*
 %{_pixmapsdir}/*
 %{_applnkdir}/Graphics/xfig.desktop

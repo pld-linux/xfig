@@ -10,37 +10,38 @@ diff -Nru xfig.3.2.3c/Fig.ad xfig.3.2.3c.new/Fig.ad
  
  ! Spell check program - put your favorite spelling check program here.
  !		It must write the misspelled words to standard output.
-diff -Nru xfig.3.2.3c/Imakefile xfig.3.2.3c.new/Imakefile
---- xfig.3.2.3c/Imakefile	Wed Jul 19 20:14:27 2000
-+++ xfig.3.2.3c.new/Imakefile	Sat Nov  4 12:11:14 2000
-@@ -40,8 +40,8 @@
+--- xfig.3.2.4/Imakefile.orig	Thu Dec 19 18:57:11 2002
++++ xfig.3.2.4/Imakefile	Tue Mar 25 02:05:31 2003
+@@ -49,7 +49,7 @@
+ XCOMM are in different places
+ 
+ PNGLIBDIR = $(USRLIBDIR)
+-PNGINC = -I/usr/local/include
++PNGINC =
+ 
+ XCOMM If don't want JPEG support, comment out the #define USEJPEG line
+ XCOMM Uncomment the #define for USEJPEG if you want to be able to import
+@@ -68,8 +68,8 @@
  
  #ifdef USEJPEG
  #ifdef USEINSTALLEDJPEG
 -JPEGLIBDIR = /usr/local/lib
--JPEGINCDIR = /usr/include/X11
+-JPEGINC = -I/usr/include/X11
 +JPEGLIBDIR = /usr/lib
-+JPEGINCDIR = /usr/include
++JPEGINC =
  #else
  JPEGLIBDIR = ../jpeg
- JPEGINCDIR = $(JPEGLIBDIR)
-@@ -59,12 +59,12 @@
- XCOMM Change XPMLIBDIR if necessary to point to the xpm library (libXpm)
- XCOMM Change XPMINC if necessary to point to the include file for xpm (xpm.h)
- 
--XCOMM #define USEXPM
--XCOMM #define USEXPM_ICON
-+#define USEXPM
-+#define USEXPM_ICON
+ JPEGINC = -I$(JPEGLIBDIR)
+@@ -92,7 +92,7 @@
  
  #ifdef USEXPM
  XPMLIBDIR = $(USRLIBDIR)
 -XPMINC = -I/usr/include/X11
-+XPMINC = -I/usr/X11R6/include/X11/
++XPMINC = -I/usr/X11R6/include/X11
  #endif
  
  XCOMM Uncomment the following definiton if you want to use the small icons
-@@ -115,7 +115,7 @@
+@@ -154,7 +154,7 @@
  XCOMM inline functions. With the "INLINE" keyword, you should notice that
  XCOMM the display will be a bit faster in complex figures
  
@@ -49,7 +50,7 @@ diff -Nru xfig.3.2.3c/Imakefile xfig.3.2.3c.new/Imakefile
  
  XCOMM use (and change) the following if you want the multi-key data base file
  XCOMM somewhere other than the standard X11 library directory
-@@ -200,7 +200,7 @@
+@@ -234,7 +234,7 @@
  #endif /* USEJPEG */
  
  #ifdef I18N

@@ -13,7 +13,7 @@ diff -ur xfig.3.2.3d.orig/f_readeps.c xfig.3.2.3d/f_readeps.c
 @@ -273,8 +273,12 @@
  	/* re-open the pipe */
  	close_picfile(file, filetype);
- 	file = open_picfile(pic->file, &filetype, True, pixnam);
+ 	file = open_picfile(file, &filetype, PIPEOK, pixnam);
 -	sprintf(tmpfile, "%s/%s%06d", TMPDIR, "xfig-eps", getpid());
 -	if ((tmpfp = fopen(tmpfile, "wb")) == NULL) {
 +	snprintf(tmpfile, sizeof(tmpfile), "%s/xfig-eps.XXXXXX", TMPDIR);
@@ -127,7 +127,7 @@ diff -ur xfig.3.2.3d.orig/f_util.c xfig.3.2.3d/f_util.c
 @@ -1056,14 +1056,20 @@
      char	*name;
  {
-     char    line[200], *tok;
+     char    line[RC_BUFSIZ+1], *tok;
 +	int fd;
  
      /* make a temp filename in the user's home directory so we
@@ -200,7 +200,7 @@ diff -ur xfig.3.2.3d.orig/u_print.c xfig.3.2.3d/u_print.c
 @@ -71,9 +71,16 @@
      char	    syspr[2*PATH_MAX+200];
      char	    tmpfile[PATH_MAX];
-     char	   *outfile;
+     char	   *name;
 +	int fd;
  
 -    sprintf(tmpfile, "%s/%s%06d", TMPDIR, "xfig-print", getpid());
@@ -218,7 +218,7 @@ diff -ur xfig.3.2.3d.orig/u_print.c xfig.3.2.3d/u_print.c
 @@ -181,14 +188,21 @@
      char	    tmp_name[PATH_MAX];
      char	    tmp_fig_file[PATH_MAX];
-     char	   *outfile;
+     char	   *outfile, *name, *real_lang;
 +	int fd;
  
      /* if file exists, ask if ok */
@@ -268,7 +268,7 @@ diff -ur xfig.3.2.3d.orig/w_print.c xfig.3.2.3d/w_print.c
 -	char	    tmp_exp_file[32];
 +	char	    tmp_exp_file[PATH_MAX];
  	char	    str[255];
- 	char	    backgrnd[10];
+ 	char	    backgrnd[10], grid[80];
 -
 +	int fd;
  	if (writing_batch || emptyfigure_msg(print_msg))
