@@ -64,7 +64,7 @@ olanak verir.
 xmkmf
 %{__make} CDEBUGFLAGS="%{rpmcflags}" \
 	CXXDEBUGFLAGS="%{rpmcflags}" \
-	LOCAL_LDFLAGS="%{!?debug:-s}"
+	LOCAL_LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
