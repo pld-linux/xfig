@@ -1,7 +1,7 @@
-diff -Nru xfig.3.2.3c/Fig.ad xfig.3.2.3c.new/Fig.ad
---- xfig.3.2.3c/Fig.ad	Tue Jul 25 19:05:57 2000
-+++ xfig.3.2.3c.new/Fig.ad	Sat Nov  4 12:26:07 2000
-@@ -16,7 +16,7 @@
+diff -urN xfig.3.2.5-alpha4.org/Fig.ad xfig.3.2.5-alpha4/Fig.ad
+--- xfig.3.2.5-alpha4.org/Fig.ad	2004-04-22 00:49:19.465831480 +0200
++++ xfig.3.2.5-alpha4/Fig.ad	2004-04-22 01:00:31.335691736 +0200
+@@ -24,7 +24,7 @@
  
  ! pdfviewer - put your favorite pdf viewer here.  
  !		This is for viewing the xfig how-to guide and man pages
@@ -10,18 +10,28 @@ diff -Nru xfig.3.2.3c/Fig.ad xfig.3.2.3c.new/Fig.ad
  
  ! Spell check program - put your favorite spelling check program here.
  !		It must write the misspelled words to standard output.
---- xfig.3.2.4/Imakefile.orig	Thu Dec 19 18:57:11 2002
-+++ xfig.3.2.4/Imakefile	Tue Mar 25 02:05:31 2003
-@@ -49,7 +49,7 @@
+diff -urN xfig.3.2.5-alpha4.org/Imakefile xfig.3.2.5-alpha4/Imakefile
+--- xfig.3.2.5-alpha4.org/Imakefile	2004-04-22 00:49:18.756939248 +0200
++++ xfig.3.2.5-alpha4/Imakefile	2004-04-22 01:01:06.072410952 +0200
+@@ -58,7 +58,7 @@
+ 
+ #ifdef XAW3D1_5E
+ DUSEXAW3D = -DXAW3D -DXAW3D1_5E
+-XAWLIB = -lXaw3d15e
++XAWLIB = -lXaw3d
+ #else
+ #ifdef XAW3D
+ DUSEXAW3D = -DXAW3D
+@@ -72,7 +72,7 @@
  XCOMM are in different places
  
  PNGLIBDIR = $(USRLIBDIR)
 -PNGINC = -I/usr/local/include
-+PNGINC =
++PNGINC = 
+ ZLIBDIR = $(USRLIBDIR)
  
  XCOMM If don't want JPEG support, comment out the #define USEJPEG line
- XCOMM Uncomment the #define for USEJPEG if you want to be able to import
-@@ -68,8 +68,8 @@
+@@ -92,8 +92,8 @@
  
  #ifdef USEJPEG
  #ifdef USEINSTALLEDJPEG
@@ -32,7 +42,7 @@ diff -Nru xfig.3.2.3c/Fig.ad xfig.3.2.3c.new/Fig.ad
  #else
  JPEGLIBDIR = ../jpeg
  JPEGINC = -I$(JPEGLIBDIR)
-@@ -92,7 +92,7 @@
+@@ -116,7 +116,7 @@
  
  #ifdef USEXPM
  XPMLIBDIR = $(USRLIBDIR)
@@ -41,7 +51,7 @@ diff -Nru xfig.3.2.3c/Fig.ad xfig.3.2.3c.new/Fig.ad
  #endif
  
  XCOMM Uncomment the following definiton if you want to use the small icons
-@@ -154,7 +154,7 @@
+@@ -157,7 +157,7 @@
  XCOMM inline functions. With the "INLINE" keyword, you should notice that
  XCOMM the display will be a bit faster in complex figures
  
@@ -50,7 +60,7 @@ diff -Nru xfig.3.2.3c/Fig.ad xfig.3.2.3c.new/Fig.ad
  
  XCOMM use (and change) the following if you want the multi-key data base file
  XCOMM somewhere other than the standard X11 library directory
-@@ -234,7 +234,7 @@
+@@ -239,7 +239,7 @@
  #endif /* USEJPEG */
  
  #ifdef I18N
