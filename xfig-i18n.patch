@@ -36,3 +36,14 @@ diff -urN xfig.3.2.3c.org/main.c xfig.3.2.3c/main.c
      XtSetLanguageProc(NULL, NULL, NULL);
  #endif  /* I18N */
  
+--- xfig.3.2.3c/Fig.ad.i18n	Thu Aug 24 15:27:35 2000
++++ xfig.3.2.3c/Fig.ad	Thu Aug 24 15:27:35 2000
+@@ -158,7 +158,7 @@
+ 
+ ! If xfig is compiled with I18N option, you may want to uncomment following line.
+ !
+-!Fig.international: true
++Fig.international: true
+ 
+ ! Note that you shouldn't remove the following "Fig*international: false".  
+ ! It must be there to cancel any *international: true that may defined via xrdb.
