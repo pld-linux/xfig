@@ -4,8 +4,8 @@ Summary(fr):	Outil de dessin sous X11
 Summary(pl):	Program do rysowania pod X11
 Summary(tr):	X11 çizim aracý
 Name:		xfig
-Version:	3.2.3c
-Release:	11
+Version:	3.2.3d
+Release:	1
 License:	Freeware
 Group:		X11/Applications/Graphics
 Group(de):	X11/Applikationen/Grafik
@@ -15,8 +15,6 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-i18n.patch
-Patch2:		%{name}-printer.patch
-Patch3:		%{name}-f_read.patch
 Icon:		xfig.xpm
 BuildRequires:	libjpeg-devel
 BuildRequires:	Xaw3d-devel
@@ -57,8 +55,6 @@ olanak verir.
 %setup -q -n %{name}.%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
 
 %build
 xmkmf
@@ -75,6 +71,8 @@ install -d $RPM_BUILD_ROOT{%{_applnkdir}/Graphics,%{_datadir}/pixmaps}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Graphics
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/pixmaps
+cp -ar Examples/Libraries $RPM_BUILD_ROOT%{_libdir}/X11/xfig
+rm -f $RPM_BUILD_ROOT%{_libdir}/X11/xfig/Libraries/*/README
 
 (
 cat $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
@@ -91,17 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {README,CHANGES,FIGAPPS}.gz
+%doc *.gz
 %attr(755,root,root) %{_bindir}/xfig
-%dir %{_libdir}/X11/xfig
-%{_libdir}/X11/xfig/CompKeyDB
-%{_libdir}/X11/xfig/Libraries
-%{_libdir}/X11/xfig/xfig*
-%dir %{_libdir}/X11/xfig/html
-%{_libdir}/X11/xfig/html/*.*
-%{_libdir}/X11/xfig/html/images
-%lang(ja) %{_libdir}/X11/xfig/html/japanese
-
+%{_libdir}/X11/xfig
 %{_libdir}/X11/app-defaults/Fig
 %{_mandir}/man1/*
 %{_pixmapsdir}/*
