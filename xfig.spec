@@ -1,15 +1,15 @@
-Summary:     X11 drawing tool
-Summary(pl): Program do rysowania pod X11
-Name:        xfig
-Version:     3.2.2
-Release:     2
-Copyright:   Freeware
-Group:       X11/Applications/Graphics
-Group(pl):   X11/Aplikacje/Grafika
-Source:      ftp://ftp.x.org/contrib/applications/drawing_tools/xfig/%{name}.%{version}.tar.gz
-Patch0:      xfig-config.patch
-Requires:    transfig >= 3.2
-Buildroot:   /tmp/%{name}-%{version}-root
+Summary:	X11 drawing tool
+Summary(pl):	Program do rysowania pod X11
+Name:		xfig
+Version:	3.2.2
+Release:	2
+Copyright:	Freeware
+Group:		X11/Applications/Graphics
+Group(pl):	X11/Aplikacje/Grafika
+Source:		ftp://ftp.x.org/contrib/applications/drawing_tools/xfig/%{name}.%{version}.tar.gz
+Patch0:		xfig-config.patch
+Requires:	transfig >= 3.2
+Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
 This program gives you all the features you need to create basic- to
@@ -53,7 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644, root, root, 755)
 %attr(755, root, root) /usr/X11R6/bin/xfig
 /usr/X11R6/lib/X11/xfig
-%attr(644, root,  man) /usr/X11R6/man/man1/*
+/usr/X11R6/man/man1/*
 %config /usr/X11R6/lib/X11/app-defaults/*
 %config /etc/X11/wmconfig/xfig
 
