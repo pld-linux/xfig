@@ -2,6 +2,7 @@
 Name=xfig
 Comment=Drawing Tool
 Comment[pl]=Program do rysowania
+Icon=xfig.xpm
 Exec=xfig
 Terminal=0
 Type=Application
