@@ -1,6 +1,6 @@
-diff -urN xfig.3.2.5-alpha4.org/Fig.ad xfig.3.2.5-alpha4/Fig.ad
---- xfig.3.2.5-alpha4.org/Fig.ad	2004-04-22 00:49:19.465831480 +0200
-+++ xfig.3.2.5-alpha4/Fig.ad	2004-04-22 01:00:31.335691736 +0200
+diff -urN xfig.3.2.5-alpha5.org/Fig.ad xfig.3.2.5-alpha5/Fig.ad
+--- xfig.3.2.5-alpha5.org/Fig.ad	2004-06-04 21:15:30.786456520 +0200
++++ xfig.3.2.5-alpha5/Fig.ad	2004-06-04 21:16:18.239242600 +0200
 @@ -24,7 +24,7 @@
  
  ! pdfviewer - put your favorite pdf viewer here.  
@@ -10,18 +10,18 @@ diff -urN xfig.3.2.5-alpha4.org/Fig.ad xfig.3.2.5-alpha4/Fig.ad
  
  ! Spell check program - put your favorite spelling check program here.
  !		It must write the misspelled words to standard output.
-diff -urN xfig.3.2.5-alpha4.org/Imakefile xfig.3.2.5-alpha4/Imakefile
---- xfig.3.2.5-alpha4.org/Imakefile	2004-04-22 00:49:18.756939248 +0200
-+++ xfig.3.2.5-alpha4/Imakefile	2004-04-22 01:01:06.072410952 +0200
+diff -urN xfig.3.2.5-alpha5.org/Imakefile xfig.3.2.5-alpha5/Imakefile
+--- xfig.3.2.5-alpha5.org/Imakefile	2004-06-04 21:15:30.204544984 +0200
++++ xfig.3.2.5-alpha5/Imakefile	2004-06-04 21:16:41.824657072 +0200
 @@ -58,7 +58,7 @@
  
  #ifdef XAW3D1_5E
- DUSEXAW3D = -DXAW3D -DXAW3D1_5E
--XAWLIB = -lXaw3d15e
-+XAWLIB = -lXaw3d
+     DUSEXAW3D = -DXAW3D -DXAW3D1_5E
+-    XAWLIB = -lXaw3d15e
++    XAWLIB = -lXaw3d
  #else
- #ifdef XAW3D
- DUSEXAW3D = -DXAW3D
+     XAW_SRC = w_menuentry.c SmeCascade.c SmeBSB.c SimpleMenu.c
+     XAW_OBJ = w_menuentry.o SmeCascade.o SmeBSB.o SimpleMenu.o
 @@ -72,7 +72,7 @@
  XCOMM are in different places
  
