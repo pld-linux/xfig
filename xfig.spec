@@ -73,9 +73,11 @@ install -d $RPM_BUILD_ROOT{%{_applnkdir}/Graphics,%{_datadir}/pixmaps}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Graphics
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/pixmaps
 
-(cat $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
-tail +2 $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig-color) \
-	> $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new
+(
+cat $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
+tail +2 $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig-color
+echo 'Fig.inches: off'
+) 	> $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new
 mv -f $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new \
 	$RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
 
