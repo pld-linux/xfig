@@ -9,7 +9,7 @@ Summary(tr):	X11 Гizim aracЩ
 Summary(uk):	╤нструмент для малювання просто╖ векторно╖ граф╕ки
 Name:		xfig
 Version:	3.2.3d
-Release:	8
+Release:	11
 License:	Freeware
 Group:		X11/Applications/Graphics
 Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
@@ -17,6 +17,7 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-i18n.patch
+Patch2:		%{name}-mkstemp.diff
 Icon:		xfig.xpm
 BuildRequires:	XFree86-devel
 BuildRequires:	Xaw3d-devel
@@ -81,6 +82,7 @@ Xfig - це ╕нструмент для створення базово╖ векторно╖ граф╕ки,
 %setup -q -n %{name}.%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 xmkmf -a
