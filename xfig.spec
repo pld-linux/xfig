@@ -13,6 +13,7 @@ Release:	1
 License:	Freeware
 Group:		X11/Applications/Graphics
 Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
+# Source0-md5:	1911fc0f733cb2f40336a8d0e82513de
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-config.patch
