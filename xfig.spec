@@ -5,12 +5,13 @@ Summary(pl):	Program do rysowania pod X11
 Summary(tr):	X11 çizim aracý
 Name:		xfig
 Version:	3.2.3a
-Release:	1
+Release:	4
 Copyright:	Freeware
 Group:		X11/Applications/Graphics
 Group(pl):	X11/Aplikacje/Grafika
 Source0:	http://www.xfig.org/xfigdist//%{name}.%{version}.tar.gz
 Source1:	xfig.desktop
+Source2:	xfig.png
 Patch0:		xfig-config.patch
 Icon:		xfig.xpm
 BuildRequires:	libjpeg-devel
@@ -65,7 +66,7 @@ install -d $RPM_BUILD_ROOT{%{_applnkdir}/Graphics,%{_datadir}/pixmaps}
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Graphics
-install $RPM_SOURCE_DIR/xfig.xpm $RPM_BUILD_ROOT%{_datadir}/pixmaps
+install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/pixmaps
 
 (cat $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
 tail +2 $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig-color) \
