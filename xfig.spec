@@ -23,7 +23,7 @@ BuildRequires:	libpng-devel
 URL:		http://www.xfig.org/
 Requires:	transfig >= 3.2.3c-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Obsletes:	xfig-doc
+Obsoletes:	xfig-doc
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
