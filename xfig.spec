@@ -61,7 +61,7 @@ rm -rf $RPM_BUILD_ROOT
   [3.2.2-2]
 - added -q %setup parameter,
 - changed Group to X11/Applications/Graphics,
-- added gziping man pages,
+- added gzipping man pages,
 - spec rewrited for using Buildroot,
 - added using %%{name} and %%{version} in Source,
 - added using $RPM_OPT_FLAGS during compile,
