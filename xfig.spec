@@ -58,8 +58,16 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {README,CHANGES,FIGAPPS}.gz
 %attr(755,root,root) %{_bindir}/xfig
-%{_libdir}/X11/xfig
-%{_mandir}/man1/*
+%dir %{_libdir}/X11/xfig
+%{_libdir}/X11/xfig/CompKeyDB
+%{_libdir}/X11/xfig/Libraries
+%dir %{_libdir}/X11/xfig/html
+%{_libdir}/X11/xfig/html/*.*
+%{_libdir}/X11/xfig/html/images
+%lang(ja) %{_libdir}/X11/xfig/html/japanese
+
 %config %{_libdir}/X11/app-defaults/*
+
+%{_mandir}/man1/*
 
 %{_datadir}/applnk/Graphics/xfig.desktop
