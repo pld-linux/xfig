@@ -19,11 +19,10 @@ BuildRequires:	XFree86-devel
 BuildRequires:	xpm-devel
 URL:		http://www.xfig.org/
 Requires:	transfig >= 3.2
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
-%define		_applnkdir	%{_datadir}/applnk
 
 %description
 This program gives you all the features you need to create basic- to
