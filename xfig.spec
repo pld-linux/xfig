@@ -8,11 +8,12 @@ Version:	3.2.3a
 Release:	4
 Copyright:	Freeware
 Group:		X11/Applications/Graphics
+Group(de):	X11/Applikationen/Grafik
 Group(pl):	X11/Aplikacje/Grafika
 Source0:	http://www.xfig.org/xfigdist//%{name}.%{version}.tar.gz
-Source1:	xfig.desktop
-Source2:	xfig.png
-Patch0:		xfig-config.patch
+Source1:	%{name}.desktop
+Source2:	%{name}.png
+Patch0:		%{name}-config.patch
 Icon:		xfig.xpm
 BuildRequires:	libjpeg-devel
 BuildRequires:	Xaw3d-devel
@@ -56,7 +57,9 @@ olanak verir.
 
 %build
 xmkmf
-%{__make} CDEBUGFLAGS="$RPM_OPT_FLAGS" CXXDEBUGFLAGS="$RPM_OPT_FLAGS"
+%{__make} CDEBUGFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" \
+	CXXDEBUGFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" \
+	LOCAL_LDFLAGS="%{!?debug:-s}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -74,8 +77,7 @@ tail +2 $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig-color) \
 mv -f $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new \
 	$RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
-	README CHANGES FIGAPPS
+gzip -9nf README CHANGES FIGAPPS
 
 %clean
 rm -rf $RPM_BUILD_ROOT
