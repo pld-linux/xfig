@@ -98,12 +98,12 @@ xmkmf -a
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Graphics,%{_pixmapsdir},%{_libdir}}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}}
 
 %{__make} install install.man \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Graphics
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 cp -ar Libraries $RPM_BUILD_ROOT%{_prefix}/lib/X11/xfig
 rm -f $RPM_BUILD_ROOT%{_prefix}/lib/X11/xfig/Libraries/*/README
@@ -128,4 +128,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/lib/X11/app-defaults/Fig-color
 %{_mandir}/man1/*
 %{_pixmapsdir}/*
-%{_applnkdir}/Graphics/xfig.desktop
+%{_desktopdir}/*
