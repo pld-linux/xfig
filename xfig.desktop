@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=xfig
+Comment=Drawing Tool
+Comment[pl]=Program do rysowania
+Exec=xfig
+Terminal=0
+Type=Application
