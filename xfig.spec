@@ -48,6 +48,12 @@ make install install.man \
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/applnk/Graphics
 
+(cat $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
+tail +2 $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig-color) \
+	> $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new
+mv -f $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig.new \
+	$RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/Fig
+
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
 	README CHANGES FIGAPPS
 
@@ -66,7 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/X11/xfig/html/images
 %lang(ja) %{_libdir}/X11/xfig/html/japanese
 
-%{_libdir}/X11/app-defaults/*
+%{_libdir}/X11/app-defaults/Fig
 
 %{_mandir}/man1/*
 
