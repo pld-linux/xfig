@@ -38,8 +38,8 @@ elementaren und fortgeschrittenen Vektorgrafiken benötigen,
 einschließlich Bezier-Kurven, Linien, Lineale und anderes.
 
 %description -l es
-Este programa ofrece todo lo que necesitas para crear gráficos con vectores,
-incluyendo curvas, líneas, reglas, y más.
+Este programa ofrece todo lo que necesitas para crear gráficos con
+vectores, incluyendo curvas, líneas, reglas, y más.
 
 %description -l fr
 Ce programme vous offre tout ce dont vous avez besoin pour créer des
@@ -53,8 +53,7 @@ linie, krzywe bezier i wiele innych.
 
 %description -l pt_BR
 Este programa oferece tudo o que você precisa para criar gráficos com
-vetores,                                                    incluindo
-curvas, linhas, réguas, e mais. 
+vetores, incluindo curvas, linhas, réguas, e mais.
 
 %description -l tr
 Bu program, en temel olanlarýndan ileri düzeydekilere kadar tüm belli
@@ -69,7 +68,7 @@ Group:		X11/Applications/Graphics
 %description doc
 On-line documentation for xfig.
 
-%description -l pl doc
+%description doc -l pl
 Dokumentacja on-line programu xfig.
 
 %prep
