@@ -1,6 +1,6 @@
-diff -Nur --exclude *~ xfig.3.2.3c/Imakefile xfig.3.2.3c.new/Imakefile
---- xfig.3.2.3c/Imakefile	Fri Oct 27 23:46:21 2000
-+++ xfig.3.2.3c.new/Imakefile	Sat Oct 28 00:01:28 2000
+diff -urN xfig.3.2.3c.org/Imakefile xfig.3.2.3c/Imakefile
+--- xfig.3.2.3c.org/Imakefile	Mon Oct 30 19:51:43 2000
++++ xfig.3.2.3c/Imakefile	Mon Oct 30 19:52:03 2000
 @@ -104,7 +104,7 @@
  XCOMM If your setlocale() dosen't support the locale, you should
  XCOMM add -DSETLOCALE to I18N_DEFS.
@@ -9,4 +9,30 @@ diff -Nur --exclude *~ xfig.3.2.3c/Imakefile xfig.3.2.3c.new/Imakefile
 +#define I18N
  
  XCOMM If using an input tablet uncomment the following
+ 
+diff -urN xfig.3.2.3c.org/main.c xfig.3.2.3c/main.c
+--- xfig.3.2.3c.org/main.c	Mon Oct 30 19:51:44 2000
++++ xfig.3.2.3c/main.c	Mon Oct 30 19:54:47 2000
+@@ -631,8 +631,21 @@
+     }
+ 
+ #ifdef I18N
+-    setlocale(LC_ALL, "");
++    /* don't set LC_ALL here because LC_NUMERIC below won't work. --misiek */
++    setlocale(LC_COLLATE, "");
++    setlocale(LC_CTYPE, "");
++    setlocale(LC_MESSAGES, "");
++    setlocale(LC_MONETARY, "");
++    setlocale(LC_TIME, "");
+     setlocale(LC_NUMERIC, "C");
++#ifdef LC_IDENTIFICATION /* glibc 2.2 */
++    setlocale(LC_PAPER, "");
++    setlocale(LC_NAME, "");
++    setlocale(LC_ADDRESS, "");
++    setlocale(LC_TELEPHONE, "");
++    setlocale(LC_MEASUREMENT, "");
++    setlocale(LC_IDENTIFICATION, "");
++#endif
+     XtSetLanguageProc(NULL, NULL, NULL);
+ #endif  /* I18N */
  
