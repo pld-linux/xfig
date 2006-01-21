@@ -21,7 +21,6 @@ Source2:	%{name}.png
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-i18n.patch
 Patch2:		%{name}-mkstemp.diff
-Icon:		xfig.xpm
 URL:		http://www.xfig.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	Xaw3d-devel
