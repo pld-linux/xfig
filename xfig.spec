@@ -1,3 +1,4 @@
+%define	_pre	alpha5
 Summary:	X11 drawing tool
 Summary(de):	X11-Zeichen-Tool
 Summary(es):	Herramienta para diseЯo X11
@@ -9,7 +10,6 @@ Summary(tr):	X11 Гizim aracЩ
 Summary(uk):	╤нструмент для малювання просто╖ векторно╖ граф╕ки
 Name:		xfig
 Version:	3.2.5
-%define	_pre	alpha5
 Release:	0.%{_pre}.4
 License:	Freeware
 Group:		X11/Applications/Graphics
@@ -107,7 +107,7 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
-cp -ar Libraries $RPM_BUILD_ROOT%{_datadir}/xfig
+cp -a Libraries $RPM_BUILD_ROOT%{_datadir}/xfig
 rm -f $RPM_BUILD_ROOT%{_datadir}/xfig/Libraries/*/README
 
 (
