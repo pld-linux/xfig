@@ -13,8 +13,8 @@ Version:	3.2.5
 Release:	0.%{_pre}.4
 License:	Freeware
 Group:		X11/Applications/Graphics
-#Source0:	http://www.xfig.org/xfigdist/%{name}.%{version}.full.tar.gz
-Source0:	http://www.xfig.org/alpha/%{name}.%{version}-%{_pre}.full.tar.gz
+#Source0:	http://xfig.org/software/xfig/%{version}/%{name}.%{version}.full.tar.gz
+Source0:	http://xfig.org/software/xfig/%{version}-alpha/%{name}.%{version}-%{_pre}.full.tar.gz
 # Source0-md5:	7547b66232569e3c12e4a0639bd92629
 Source1:	%{name}.desktop
 Source2:	%{name}.png
