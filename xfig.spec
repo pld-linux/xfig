@@ -10,7 +10,7 @@ Summary(tr):	X11 Гizim aracЩ
 Summary(uk):	╤нструмент для малювання просто╖ векторно╖ граф╕ки
 Name:		xfig
 Version:	3.2.5
-Release:	0.%{_pre}.4
+Release:	0.%{_pre}.5
 License:	Freeware
 Group:		X11/Applications/Graphics
 #Source0:	http://xfig.org/software/xfig/%{version}/%{name}.%{version}.full.tar.gz
@@ -21,17 +21,22 @@ Source2:	%{name}.png
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-i18n.patch
 Patch2:		%{name}-mkstemp.diff
+Patch3:		%{name}-c.patch
 URL:		http://www.xfig.org/
-BuildRequires:	XFree86-devel
-BuildRequires:	Xaw3d-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
+BuildRequires:	xorg-cf-files
+BuildRequires:	xorg-lib-libXaw-devel
+BuildRequires:	xorg-lib-libXpm-devel
+BuildRequires:	xorg-util-gccmakedep
+BuildRequires:	xorg-util-imake
 Requires:	netpbm-progs
 Requires:	transfig >= 3.2.4-3
+Requires:	xorg-lib-libXt >= 1.0.0
 Obsoletes:	xfig-doc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_appdefsdir	/usr/X11R6/lib/X11/app-defaults
+%define		_appdefsdir	%{_datadir}/X11/app-defaults
 
 %description
 This program gives you all the features you need to create basic- to
@@ -84,16 +89,17 @@ Xfig - це ╕нструмент для створення базово╖ векторно╖ граф╕ки,
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 xmkmf -a
 %{__make} \
 	CC="%{__cc}" \
 	CDEBUGFLAGS="%{rpmcflags}" \
-	CXXDEBUGFLAGS="%{rpmcflags}" \
 	LOCAL_LDFLAGS="%{rpmldflags}" \
 	XFIGLIBDIR=%{_datadir}/xfig \
-	XFIGDOCDIR=%{_docdir}/%{name}-%{version}
+	XFIGDOCDIR=%{_docdir}/%{name}-%{version} \
+	XPMINC="-I/usr/include/X11"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -102,6 +108,7 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}}
 %{__make} install install.man \
 	DESTDIR=$RPM_BUILD_ROOT \
 	BINDIR=%{_bindir} \
+	CONFDIR=%{_datadir}/X11 \
 	MANPATH=%{_mandir} \
 	XFIGLIBDIR=%{_datadir}/xfig
 
