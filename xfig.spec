@@ -136,4 +136,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_appdefsdir}/Fig-color
 %{_mandir}/man1/*
 %{_pixmapsdir}/*
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
