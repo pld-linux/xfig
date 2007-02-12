@@ -1,13 +1,13 @@
 %define	_pre	alpha5
 Summary:	X11 drawing tool
-Summary(de.UTF-8):   X11-Zeichen-Tool
-Summary(es.UTF-8):   Herramienta para diseño X11
-Summary(fr.UTF-8):   Outil de dessin sous X11
-Summary(pl.UTF-8):   Program do rysowania pod X11
-Summary(pt_BR.UTF-8):   Ferramenta para desenho X11
-Summary(ru.UTF-8):   Инструмент для рисования простой векторной графики
-Summary(tr.UTF-8):   X11 çizim aracı
-Summary(uk.UTF-8):   Інструмент для малювання простої векторної графіки
+Summary(de.UTF-8):	X11-Zeichen-Tool
+Summary(es.UTF-8):	Herramienta para diseño X11
+Summary(fr.UTF-8):	Outil de dessin sous X11
+Summary(pl.UTF-8):	Program do rysowania pod X11
+Summary(pt_BR.UTF-8):	Ferramenta para desenho X11
+Summary(ru.UTF-8):	Инструмент для рисования простой векторной графики
+Summary(tr.UTF-8):	X11 çizim aracı
+Summary(uk.UTF-8):	Інструмент для малювання простої векторної графіки
 Name:		xfig
 Version:	3.2.5
 Release:	0.%{_pre}.5
