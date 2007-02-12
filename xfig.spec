@@ -1,13 +1,13 @@
 %define	_pre	alpha5
 Summary:	X11 drawing tool
-Summary(de):	X11-Zeichen-Tool
-Summary(es):	Herramienta para diseЯo X11
-Summary(fr):	Outil de dessin sous X11
-Summary(pl):	Program do rysowania pod X11
-Summary(pt_BR):	Ferramenta para desenho X11
-Summary(ru):	Инструмент для рисования простой векторной графики
-Summary(tr):	X11 Гizim aracЩ
-Summary(uk):	╤нструмент для малювання просто╖ векторно╖ граф╕ки
+Summary(de.UTF-8):   X11-Zeichen-Tool
+Summary(es.UTF-8):   Herramienta para diseц╠o X11
+Summary(fr.UTF-8):   Outil de dessin sous X11
+Summary(pl.UTF-8):   Program do rysowania pod X11
+Summary(pt_BR.UTF-8):   Ferramenta para desenho X11
+Summary(ru.UTF-8):   п≤п╫я│я┌я─я┐п╪п╣п╫я┌ п╢п╩я▐ я─п╦я│п╬п╡п╟п╫п╦я▐ п©я─п╬я│я┌п╬п╧ п╡п╣п╨я┌п╬я─п╫п╬п╧ пЁя─п╟я└п╦п╨п╦
+Summary(tr.UTF-8):   X11 ц╖izim aracд╠
+Summary(uk.UTF-8):   п├п╫я│я┌я─я┐п╪п╣п╫я┌ п╢п╩я▐ п╪п╟п╩я▌п╡п╟п╫п╫я▐ п©я─п╬я│я┌п╬я≈ п╡п╣п╨я┌п╬я─п╫п╬я≈ пЁя─п╟я└я√п╨п╦
 Name:		xfig
 Version:	3.2.5
 Release:	0.%{_pre}.5
@@ -43,46 +43,46 @@ This program gives you all the features you need to create basic- to
 intermediate-level vector graphics, including Bezier curves, lines,
 rulers, and more.
 
-%description -l de
-Dieses Programm bietet sДmtliche Funktionen, die Sie zum Erstellen von
-elementaren und fortgeschrittenen Vektorgrafiken benЖtigen,
-einschlieъlich Bezier-Kurven, Linien, Lineale und anderes.
+%description -l de.UTF-8
+Dieses Programm bietet sц╓mtliche Funktionen, die Sie zum Erstellen von
+elementaren und fortgeschrittenen Vektorgrafiken benц╤tigen,
+einschlieц÷lich Bezier-Kurven, Linien, Lineale und anderes.
 
-%description -l es
-Este programa ofrece todo lo que necesitas para crear grАficos con
-vectores, incluyendo curvas, lМneas, reglas, y mАs.
+%description -l es.UTF-8
+Este programa ofrece todo lo que necesitas para crear grц║ficos con
+vectores, incluyendo curvas, lц╜neas, reglas, y mц║s.
 
-%description -l fr
-Ce programme vous offre tout ce dont vous avez besoin pour crИer des
-graphiques vectoriels, de base Ю moyennement complexes. Il comprend
-les courbes de BИzier, les lignes, les rХgles etc.
+%description -l fr.UTF-8
+Ce programme vous offre tout ce dont vous avez besoin pour crц╘er des
+graphiques vectoriels, de base ц═ moyennement complexes. Il comprend
+les courbes de Bц╘zier, les lignes, les rц╗gles etc.
 
-%description -l pl
-Program xfig udostЙpnia wszystkie mo©liwo╤ci potrzebne do tworzenia
-prostych i ╤redniozaawansowanych grafik wektorowych skЁadaj╠cych siЙ z
-linie, krzywych Beziera i podobnych elementСw.
+%description -l pl.UTF-8
+Program xfig udostд≥pnia wszystkie moе╪liwoе⌡ci potrzebne do tworzenia
+prostych i е⌡redniozaawansowanych grafik wektorowych skе┌adajд┘cych siд≥ z
+linie, krzywych Beziera i podobnych elementцЁw.
 
-%description -l pt_BR
-Este programa oferece tudo o que vocЙ precisa para criar grАficos com
-vetores, incluindo curvas, linhas, rИguas, e mais.
+%description -l pt_BR.UTF-8
+Este programa oferece tudo o que vocц╙ precisa para criar grц║ficos com
+vetores, incluindo curvas, linhas, rц╘guas, e mais.
 
-%description -l ru
-Xfig - это инструмент для создания базовой векторной графики, включая
-кривые Безье, линии и многое другое. Полученную графику можно
-сохранить, распечатать на PostScript принтерах или сконвертировать в
-другие форматы (например, X11 bitmaps, Encapsulated PostScript,
+%description -l ru.UTF-8
+Xfig - я█я┌п╬ п╦п╫я│я┌я─я┐п╪п╣п╫я┌ п╢п╩я▐ я│п╬п╥п╢п╟п╫п╦я▐ п╠п╟п╥п╬п╡п╬п╧ п╡п╣п╨я┌п╬я─п╫п╬п╧ пЁя─п╟я└п╦п╨п╦, п╡п╨п╩я▌я┤п╟я▐
+п╨я─п╦п╡я▀п╣ п▒п╣п╥я▄п╣, п╩п╦п╫п╦п╦ п╦ п╪п╫п╬пЁп╬п╣ п╢я─я┐пЁп╬п╣. п÷п╬п╩я┐я┤п╣п╫п╫я┐я▌ пЁя─п╟я└п╦п╨я┐ п╪п╬п╤п╫п╬
+я│п╬я┘я─п╟п╫п╦я┌я▄, я─п╟я│п©п╣я┤п╟я┌п╟я┌я▄ п╫п╟ PostScript п©я─п╦п╫я┌п╣я─п╟я┘ п╦п╩п╦ я│п╨п╬п╫п╡п╣я─я┌п╦я─п╬п╡п╟я┌я▄ п╡
+п╢я─я┐пЁп╦п╣ я└п╬я─п╪п╟я┌я▀ (п╫п╟п©я─п╦п╪п╣я─, X11 bitmaps, Encapsulated PostScript,
 LaTeX).
 
-%description -l tr
-Bu program, en temel olanlarЩndan ileri dЭzeydekilere kadar tЭm belli
-baЧlЩ vektЖr grafikleri (doПrular, bezier eПrisi vs) Гizebilmenize
+%description -l tr.UTF-8
+Bu program, en temel olanlarд╠ndan ileri dц╪zeydekilere kadar tц╪m belli
+baе÷lд╠ vektц╤r grafikleri (doд÷rular, bezier eд÷risi vs) ц╖izebilmenize
 olanak verir.
 
-%description -l uk
-Xfig - це ╕нструмент для створення базово╖ векторно╖ граф╕ки,
-включаючи крив╕ Без'╓, л╕н╕╖ та ╕нше. Отриману граф╕ку можна зберегти,
-роздрукувати на PostScript принтерах чи зконвертувати в ╕нш╕ формати
-(наприклад, X11 bitmaps, Encapsulated PostScript, LaTeX).
+%description -l uk.UTF-8
+Xfig - я├п╣ я√п╫я│я┌я─я┐п╪п╣п╫я┌ п╢п╩я▐ я│я┌п╡п╬я─п╣п╫п╫я▐ п╠п╟п╥п╬п╡п╬я≈ п╡п╣п╨я┌п╬я─п╫п╬я≈ пЁя─п╟я└я√п╨п╦,
+п╡п╨п╩я▌я┤п╟я▌я┤п╦ п╨я─п╦п╡я√ п▒п╣п╥'я■, п╩я√п╫я√я≈ я┌п╟ я√п╫я┬п╣. п·я┌я─п╦п╪п╟п╫я┐ пЁя─п╟я└я√п╨я┐ п╪п╬п╤п╫п╟ п╥п╠п╣я─п╣пЁя┌п╦,
+я─п╬п╥п╢я─я┐п╨я┐п╡п╟я┌п╦ п╫п╟ PostScript п©я─п╦п╫я┌п╣я─п╟я┘ я┤п╦ п╥п╨п╬п╫п╡п╣я─я┌я┐п╡п╟я┌п╦ п╡ я√п╫я┬я√ я└п╬я─п╪п╟я┌п╦
+(п╫п╟п©я─п╦п╨п╩п╟п╢, X11 bitmaps, Encapsulated PostScript, LaTeX).
 
 %prep
 %setup -q -n %{name}.%{version}-%{_pre}
