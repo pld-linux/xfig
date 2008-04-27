@@ -1,4 +1,3 @@
-%define	_pre	alpha5
 Summary:	X11 drawing tool
 Summary(de.UTF-8):	X11-Zeichen-Tool
 Summary(es.UTF-8):	Herramienta para diseño X11
@@ -10,18 +9,16 @@ Summary(tr.UTF-8):	X11 çizim aracı
 Summary(uk.UTF-8):	Інструмент для малювання простої векторної графіки
 Name:		xfig
 Version:	3.2.5
-Release:	0.%{_pre}.5
+Release:	1
 License:	Freeware
 Group:		X11/Applications/Graphics
-#Source0:	http://xfig.org/software/xfig/%{version}/%{name}.%{version}.full.tar.gz
-Source0:	http://xfig.org/software/xfig/%{version}-alpha/%{name}.%{version}-%{_pre}.full.tar.gz
-# Source0-md5:	7547b66232569e3c12e4a0639bd92629
+Source0:	http://files.xfig.org/%{name}.%{version}.full.tar.gz
+# Source0-md5:	fae0c67a3951bd41c057deb63b6aa47a
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-i18n.patch
 Patch2:		%{name}-mkstemp.diff
-Patch3:		%{name}-c.patch
 URL:		http://www.xfig.org/
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
@@ -85,11 +82,10 @@ Xfig - це інструмент для створення базової век
 (наприклад, X11 bitmaps, Encapsulated PostScript, LaTeX).
 
 %prep
-%setup -q -n %{name}.%{version}-%{_pre}
+%setup -q -n %{name}.%{version}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 xmkmf -a
