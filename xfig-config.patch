@@ -45,9 +45,9 @@ diff -urN xfig.3.2.5-alpha5.org/Imakefile xfig.3.2.5-alpha5/Imakefile
 @@ -116,7 +116,7 @@
  
  #ifdef USEXPM
- XPMLIBDIR = $(USRLIBDIR)
--XPMINC = -I/usr/include/X11
-+XPMINC = -I/usr/X11R6/include/X11
+ XPMLIBDIR = /usr/local/lib
+-XPMINC = -I/usr/local/include/X11
++XPMINC = -I/usr/include/X11
  #endif
  
  XCOMM Uncomment the following definiton if you want to use the small icons
