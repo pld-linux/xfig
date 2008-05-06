@@ -12,6 +12,7 @@ Version:	3.2.5
 Release:	1
 License:	Freeware
 Group:		X11/Applications/Graphics
+#Source0Download: http://xfig.org/art15.html
 Source0:	http://files.xfig.org/%{name}.%{version}.full.tar.gz
 # Source0-md5:	fae0c67a3951bd41c057deb63b6aa47a
 Source1:	%{name}.desktop
