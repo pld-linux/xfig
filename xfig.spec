@@ -21,6 +21,7 @@ Patch0:		%{name}-config.patch
 Patch1:		%{name}-i18n.patch
 Patch2:		%{name}-mkstemp.diff
 URL:		http://www.xfig.org/
+BuildRequires:	Xaw3d-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	xorg-cf-files
