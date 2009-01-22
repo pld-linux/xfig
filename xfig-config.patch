@@ -1,6 +1,6 @@
-diff -urN xfig.3.2.5-alpha5.org/Fig.ad xfig.3.2.5-alpha5/Fig.ad
---- xfig.3.2.5-alpha5.org/Fig.ad	2004-06-04 21:15:30.786456520 +0200
-+++ xfig.3.2.5-alpha5/Fig.ad	2004-06-04 21:16:18.239242600 +0200
+diff -urN xfig.3.2.5.org/Fig.ad xfig.3.2.5/Fig.ad
+--- xfig.3.2.5.org/Fig.ad	2005-03-16 19:25:01.000000000 +0100
++++ xfig.3.2.5/Fig.ad	2009-01-22 17:49:41.795513188 +0100
 @@ -24,7 +24,7 @@
  
  ! pdfviewer - put your favorite pdf viewer here.  
@@ -10,10 +10,15 @@ diff -urN xfig.3.2.5-alpha5.org/Fig.ad xfig.3.2.5-alpha5/Fig.ad
  
  ! Spell check program - put your favorite spelling check program here.
  !		It must write the misspelled words to standard output.
-diff -urN xfig.3.2.5-alpha5.org/Imakefile xfig.3.2.5-alpha5/Imakefile
---- xfig.3.2.5-alpha5.org/Imakefile	2004-06-04 21:15:30.204544984 +0200
-+++ xfig.3.2.5-alpha5/Imakefile	2004-06-04 21:16:41.824657072 +0200
-@@ -58,7 +58,7 @@
+diff -urN xfig.3.2.5.org/Imakefile xfig.3.2.5/Imakefile
+--- xfig.3.2.5.org/Imakefile	2006-10-11 01:19:22.000000000 +0200
++++ xfig.3.2.5/Imakefile	2009-01-22 17:50:16.832801134 +0100
+@@ -55,11 +55,11 @@
+ XCOMM Uncomment the following if you have David Hawkey's Xaw3D version 1.5E which has
+ XCOMM some new features, including "Tips", which replace xfig's "help balloons"
+ 
+-XCOMM #define XAW3D1_5E
++#define XAW3D1_5E
  
  #ifdef XAW3D1_5E
      DUSEXAW3D = -DXAW3D -DXAW3D1_5E
@@ -22,7 +27,7 @@ diff -urN xfig.3.2.5-alpha5.org/Imakefile xfig.3.2.5-alpha5/Imakefile
  #else
      XAW_SRC = w_menuentry.c SmeCascade.c SmeBSB.c SimpleMenu.c
      XAW_OBJ = w_menuentry.o SmeCascade.o SmeBSB.o SimpleMenu.o
-@@ -72,7 +72,7 @@
+@@ -73,7 +73,7 @@
  XCOMM are in different places
  
  PNGLIBDIR = $(USRLIBDIR)
@@ -31,7 +36,7 @@ diff -urN xfig.3.2.5-alpha5.org/Imakefile xfig.3.2.5-alpha5/Imakefile
  ZLIBDIR = $(USRLIBDIR)
  
  XCOMM If don't want JPEG support, comment out the #define USEJPEG line
-@@ -92,8 +92,8 @@
+@@ -93,8 +93,8 @@
  
  #ifdef USEJPEG
  #ifdef USEINSTALLEDJPEG
@@ -42,7 +47,7 @@ diff -urN xfig.3.2.5-alpha5.org/Imakefile xfig.3.2.5-alpha5/Imakefile
  #else
  JPEGLIBDIR = ../jpeg
  JPEGINC = -I$(JPEGLIBDIR)
-@@ -116,7 +116,7 @@
+@@ -117,7 +117,7 @@
  
  #ifdef USEXPM
  XPMLIBDIR = /usr/local/lib
@@ -51,7 +56,7 @@ diff -urN xfig.3.2.5-alpha5.org/Imakefile xfig.3.2.5-alpha5/Imakefile
  #endif
  
  XCOMM Uncomment the following definiton if you want to use the small icons
-@@ -157,7 +157,7 @@
+@@ -158,7 +158,7 @@
  XCOMM inline functions. With the "INLINE" keyword, you should notice that
  XCOMM the display will be a bit faster in complex figures
  
@@ -69,7 +74,7 @@ diff -urN xfig.3.2.5-alpha5.org/Imakefile xfig.3.2.5-alpha5/Imakefile
  
  XCOMM If your system doesn't have strstr undefine the following definition
  XCOMM HAVE_NO_NOSTRSTR = -DNOSTRSTR
-@@ -239,7 +239,7 @@
+@@ -241,7 +241,7 @@
  #endif /* USEJPEG */
  
  #ifdef I18N
