@@ -9,7 +9,7 @@ Summary(tr.UTF-8):	X11 çizim aracı
 Summary(uk.UTF-8):	Інструмент для малювання простої векторної графіки
 Name:		xfig
 Version:	3.2.5
-Release:	1
+Release:	2
 License:	Freeware
 Group:		X11/Applications/Graphics
 #Source0Download: http://xfig.org/art15.html
@@ -20,6 +20,7 @@ Source2:	%{name}.png
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-i18n.patch
 Patch2:		%{name}-mkstemp.diff
+Patch3:		%{name}-debian.patch
 URL:		http://www.xfig.org/
 BuildRequires:	Xaw3d-devel
 BuildRequires:	libjpeg-devel
@@ -88,6 +89,7 @@ Xfig - це інструмент для створення базової век
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 xmkmf -a
