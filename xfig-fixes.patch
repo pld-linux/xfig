@@ -1,0 +1,13 @@
+--- xfig.3.2.5/w_library.c~	2009-01-25 00:23:52.982256627 +0100
++++ xfig.3.2.5/w_library.c	2009-01-25 00:27:50.010255298 +0100
+@@ -1027,10 +1027,8 @@
+ make_library_menu(Widget parent, char *name, struct lib_rec **librec, int num)
+ {
+     Widget	     menu, entry;
+-#ifndef XAW3D1_5E
+     Widget	     submenu;
+     char	     submenu_name[200];
+-#endif /* XAW3D1_5E */
+     char	     menu_name[200];
+     int		     i;
+ 
