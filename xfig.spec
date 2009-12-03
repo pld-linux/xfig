@@ -28,6 +28,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	xorg-cf-files
 BuildRequires:	xorg-lib-libXaw-devel
+BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	xorg-lib-libXpm-devel
 BuildRequires:	xorg-util-gccmakedep
 BuildRequires:	xorg-util-imake
