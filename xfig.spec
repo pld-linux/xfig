@@ -140,7 +140,7 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 cp -a Libraries $RPM_BUILD_ROOT%{_datadir}/xfig
-rm -f $RPM_BUILD_ROOT%{_datadir}/xfig/Libraries/*/README
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/xfig/Libraries/*/README
 
 (
 cat $RPM_BUILD_ROOT%{_appdefsdir}/Fig
