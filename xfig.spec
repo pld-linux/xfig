@@ -8,20 +8,31 @@ Summary(ru.UTF-8):	Инструмент для рисования простой
 Summary(tr.UTF-8):	X11 çizim aracı
 Summary(uk.UTF-8):	Інструмент для малювання простої векторної графіки
 Name:		xfig
-Version:	3.2.5
-Release:	7
+Version:	3.2.5b
+Release:	1
 License:	Freeware
 Group:		X11/Applications/Graphics
 #Source0Download: http://xfig.org/art15.html
-Source0:	http://files.xfig.org/%{name}.%{version}.full.tar.gz
-# Source0-md5:	fae0c67a3951bd41c057deb63b6aa47a
+#Source0:	http://files.xfig.org/%{name}.%{version}.full.tar.gz
+Source0:	http://downloads.sourceforge.net/mcj/%{name}.%{version}.full.tar.gz
+# Source0-md5:	499b0ce103a6b353453bf7e327f9a3b9
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-i18n.patch
-Patch2:		%{name}-mkstemp.diff
-Patch3:		%{name}-debian.patch
-Patch4:		%{name}-fixes.patch
+
+Patch5:		%{name}-3.2.5b-zoom-during-edit.patch
+Patch6:		xfig-3.2.5b-urwfonts.patch
+Patch7:		xfig-3.2.5b-spelling.patch
+Patch8:		xfig-3.2.5b-pdfimport_mediabox.patch
+Patch9:		xfig-3.2.5b-papersize_b1.patch
+Patch10:	xfig-3.2.5b-network_images.patch
+Patch11:	xfig-3.2.5b-mkstemp.patch
+Patch12:	xfig-3.2.5b-figparserstack.patch
+Patch13:	xfig-3.2.5b-app-defaults.patch
+Patch14:	xfig-3.2.5b-cve-2010-4262.patch
+Patch15:	xfig-3.2.5b-libpng-1.5.patch
+Patch16:	xfig-3.2.5b-fix-eps-reading.patch
 URL:		http://www.xfig.org/
 BuildRequires:	Xaw3d-devel
 BuildRequires:	libjpeg-devel
@@ -90,9 +101,19 @@ Xfig - це інструмент для створення базової век
 %setup -q -n %{name}.%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+
+%patch5 -p2
+%patch6 -p0
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
+%patch11 -p0
+%patch12 -p1
+%patch13 -p0
+%patch14 -p0
+%patch15 -p1
+%patch16 -p1
 
 %build
 xmkmf -a
@@ -113,6 +134,7 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}}
 	BINDIR=%{_bindir} \
 	CONFDIR=%{_datadir}/X11 \
 	MANPATH=%{_mandir} \
+	MANSUFFIX="1" \
 	XFIGLIBDIR=%{_datadir}/xfig
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
@@ -122,7 +144,6 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/xfig/Libraries/*/README
 
 (
 cat $RPM_BUILD_ROOT%{_appdefsdir}/Fig
-tail -n +2 $RPM_BUILD_ROOT%{_appdefsdir}/Fig-color
 echo 'Fig.inches: off'
 ) 	> $RPM_BUILD_ROOT%{_appdefsdir}/Fig.new
 mv -f $RPM_BUILD_ROOT%{_appdefsdir}/Fig.new $RPM_BUILD_ROOT%{_appdefsdir}/Fig
@@ -136,7 +157,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/xfig
 %{_datadir}/xfig
 %{_appdefsdir}/Fig
-%{_appdefsdir}/Fig-color
+#%{_appdefsdir}/Fig-color
 %{_mandir}/man1/*
 %{_pixmapsdir}/*
 %{_desktopdir}/*.desktop
