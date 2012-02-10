@@ -155,9 +155,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc Doc/html/ Doc/*.html README CHANGES FIGAPPS Doc/TODO Doc/FORMAT*
 %attr(755,root,root) %{_bindir}/xfig
-%{_datadir}/xfig
+# top dir belongs to transfig, which is required by xfig
+%{_datadir}/xfig/CompKeyDB
+%{_datadir}/xfig/Libraries
 %{_appdefsdir}/Fig
 #%{_appdefsdir}/Fig-color
-%{_mandir}/man1/*
-%{_pixmapsdir}/*
-%{_desktopdir}/*.desktop
+%{_mandir}/man1/xfig.1*
+%{_pixmapsdir}/xfig.png
+%{_desktopdir}/xfig.desktop
