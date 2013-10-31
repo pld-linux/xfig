@@ -1,48 +1,13 @@
 diff -urN xfig.3.2.5.org/Imakefile xfig.3.2.5/Imakefile
 --- xfig.3.2.5.org/Imakefile	2006-10-11 01:19:22.000000000 +0200
 +++ xfig.3.2.5/Imakefile	2009-01-22 17:50:16.832801134 +0100
-@@ -60,7 +60,7 @@
- XCOMM some new features, including "Tips", which replace xfig's "help balloons"
- XCOMM NOTE: This is the default for many X systems now.
- 
--XCOMM #define XAW3D1_5E
-+#define XAW3D1_5E
- 
- #ifdef XAW3D1_5E
-     DUSEXAW3D = -DXAW3D -DXAW3D1_5E
-@@ -73,7 +73,7 @@
+@@ -76,7 +76,7 @@
  XCOMM are in different places
  
  PNGLIBDIR = $(USRLIBDIR)
--PNGINC = -I/usr/local/include
-+PNGINC = 
+-PNGINC = -I/usr/include
++PNGINC =
  ZLIBDIR = $(USRLIBDIR)
  
  XCOMM If don't want JPEG support, comment out the #define USEJPEG line
-@@ -117,7 +117,7 @@
- 
- #ifdef USEXPM
- XPMLIBDIR = /usr/local/lib
--XPMINC = -I/usr/local/include/X11
-+XPMINC = -I/usr/include/X11
- #endif
- 
- XCOMM Uncomment the following definiton if you want to use the small icons
-@@ -158,7 +158,7 @@
- XCOMM inline functions. With the "INLINE" keyword, you should notice that
- XCOMM the display will be a bit faster in complex figures
- 
--XCOMM USEINLINE = -DUSE_INLINE
-+USEINLINE = -DUSE_INLINE
- 
- XCOMM use (and change) the following if you want the multi-key data base file
- XCOMM somewhere other than the standard X11 library directory
-@@ -241,7 +241,7 @@
- #endif /* USEJPEG */
- 
- #ifdef I18N
--I18N_DEFS = -DI18N -DSETLOCALE
-+I18N_DEFS = -DI18N
- I18N_SRC = w_i18n.c
- I18N_OBJ = w_i18n.o
- #endif
+

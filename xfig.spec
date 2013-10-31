@@ -8,31 +8,29 @@ Summary(ru.UTF-8):	Инструмент для рисования простой
 Summary(tr.UTF-8):	X11 çizim aracı
 Summary(uk.UTF-8):	Інструмент для малювання простої векторної графіки
 Name:		xfig
-Version:	3.2.5b
-Release:	2
+Version:	3.2.5c
+Release:	1
 License:	Freeware
 Group:		X11/Applications/Graphics
 #Source0Download: http://xfig.org/art15.html
 #Source0:	http://files.xfig.org/%{name}.%{version}.full.tar.gz
 Source0:	http://downloads.sourceforge.net/mcj/%{name}.%{version}.full.tar.gz
-# Source0-md5:	499b0ce103a6b353453bf7e327f9a3b9
+# Source0-md5:	210851330fa4bb3581bec1f8448a4db8
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-i18n.patch
+Patch2:		38_formatstring.patch
 
 Patch5:		%{name}-3.2.5b-zoom-during-edit.patch
 Patch6:		%{name}-3.2.5b-urwfonts.patch
-Patch7:		%{name}-3.2.5b-spelling.patch
+
 Patch8:		%{name}-3.2.5b-pdfimport_mediabox.patch
 Patch9:		%{name}-3.2.5b-papersize_b1.patch
 Patch10:	%{name}-3.2.5b-network_images.patch
 Patch11:	%{name}-3.2.5b-mkstemp.patch
-Patch12:	%{name}-3.2.5b-figparserstack.patch
+
 Patch13:	%{name}-3.2.5b-app-defaults.patch
-Patch14:	%{name}-3.2.5b-CVE-2010-4262.patch
-Patch15:	%{name}-3.2.5b-libpng-1.5.patch
-Patch16:	%{name}-3.2.5b-fix-eps-reading.patch
 URL:		http://www.xfig.org/
 BuildRequires:	Xaw3d-devel
 BuildRequires:	libjpeg-devel
@@ -101,19 +99,17 @@ Xfig - це інструмент для створення базової век
 %setup -q -n %{name}.%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %patch5 -p2
 %patch6 -p0
-%patch7 -p1
+
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
 %patch11 -p0
-%patch12 -p1
+
 %patch13 -p0
-%patch14 -p0
-%patch15 -p1
-%patch16 -p1
 
 %build
 xmkmf -a
@@ -153,7 +149,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Doc/html/ Doc/*.html README CHANGES FIGAPPS Doc/TODO Doc/FORMAT*
+%doc Doc/html/ README CHANGES FIGAPPS Doc/TODO Doc/FORMAT*
 %attr(755,root,root) %{_bindir}/xfig
 # top dir belongs to transfig, which is required by xfig
 %{_datadir}/xfig/CompKeyDB
