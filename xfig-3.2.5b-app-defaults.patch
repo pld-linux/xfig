@@ -1,9 +1,8 @@
 Defaults for xfig. Idea from Roland Rosenfeld <roland@debian.org>
 
-diff -urNad xfig~/Fig.ad xfig/Fig.ad
---- Fig.ad
-+++ Fig.ad
-@@ -10,13 +10,17 @@
+--- xfig-3.2.6a/app-defaults/Fig.in.orig	2017-07-30 09:25:21.276709296 +0200
++++ xfig-3.2.6a/app-defaults/Fig.in	2017-07-30 09:27:04.636708116 +0200
+@@ -10,6 +10,10 @@
  
  ! some sample settings you may want to change
  
@@ -14,11 +13,3 @@ diff -urNad xfig~/Fig.ad xfig/Fig.ad
  ! The following fixes a problem that some window managers have
  ! with xfig continually resizing itself
  
- Fig*AllowShellResize: false
- 
- ! Image editor - can edit imported image
--Fig.image_editor:		xv
-+Fig.image_editor:		gimp
- 
- ! name of ghostscript (not ghostview)
- Fig.ghostscript:		gs

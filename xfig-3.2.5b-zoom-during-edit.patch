@@ -7,10 +7,8 @@ Date:   Thu Oct 2 12:24:04 2008 +0400
 Fixes crash. To reproduce create some object, zoom in so that it does not fit
 the screen, start another edit and press Ctrl+Z.
 
-diff --git a/xfig/u_redraw.c b/xfig/u_redraw.c
-index 146abfa..fd53a8e 100644
---- a/xfig/u_redraw.c
-+++ b/xfig/u_redraw.c
+--- a/xfig/src/u_redraw.c
++++ b/xfig/src/u_redraw.c
 @@ -434,7 +434,7 @@ redisplay_curobj()
        }
      } else {

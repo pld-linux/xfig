@@ -8,41 +8,36 @@ Summary(ru.UTF-8):	Инструмент для рисования простой
 Summary(tr.UTF-8):	X11 çizim aracı
 Summary(uk.UTF-8):	Інструмент для малювання простої векторної графіки
 Name:		xfig
-Version:	3.2.5c
+Version:	3.2.6a
 Release:	1
 License:	Freeware
 Group:		X11/Applications/Graphics
-#Source0Download: http://xfig.org/art15.html
-#Source0:	http://files.xfig.org/%{name}.%{version}.full.tar.gz
-Source0:	http://downloads.sourceforge.net/mcj/%{name}.%{version}.full.tar.gz
-# Source0-md5:	210851330fa4bb3581bec1f8448a4db8
-Source1:	%{name}.desktop
-Source2:	%{name}.png
-Patch0:		%{name}-config.patch
-Patch1:		%{name}-i18n.patch
-Patch2:		38_formatstring.patch
-
-Patch5:		%{name}-3.2.5b-zoom-during-edit.patch
-Patch6:		%{name}-3.2.5b-urwfonts.patch
-
-Patch8:		%{name}-3.2.5b-pdfimport_mediabox.patch
-Patch9:		%{name}-3.2.5b-papersize_b1.patch
-Patch10:	%{name}-3.2.5b-network_images.patch
-Patch11:	%{name}-3.2.5b-mkstemp.patch
-
-Patch13:	%{name}-3.2.5b-app-defaults.patch
-URL:		http://www.xfig.org/
+Source0:	http://downloads.sourceforge.net/mcj/%{name}-%{version}.tar.xz
+# Source0-md5:	12c9a1fe3edd3719c8cf1dfec73a5bdb
+#Source1:	%{name}.desktop
+#Source2:	%{name}.png
+Patch0:		%{name}-i18n.patch
+Patch1:		%{name}-3.2.5b-zoom-during-edit.patch
+Patch2:		%{name}-3.2.5b-urwfonts.patch
+Patch3:		%{name}-3.2.5b-app-defaults.patch
+Patch4:		%{name}-desktop.patch
+#Patch0:		%{name}-config.patch
+#Patch2:		38_formatstring.patch
+#Patch8:		%{name}-3.2.5b-pdfimport_mediabox.patch
+#Patch9:		%{name}-3.2.5b-papersize_b1.patch
+#Patch10:	%{name}-3.2.5b-network_images.patch
+#Patch11:	%{name}-3.2.5b-mkstemp.patch
+URL:		http://mcj.sourceforge.net/
 BuildRequires:	Xaw3d-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:	xorg-cf-files
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libXaw-devel
-BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	xorg-lib-libXpm-devel
-BuildRequires:	xorg-util-gccmakedep
-BuildRequires:	xorg-util-imake
+BuildRequires:	xorg-lib-libXt-devel
+BuildRequires:	xz
+Requires:	fig2dev >= 3.2.6
 Requires:	netpbm-progs
-Requires:	transfig >= 3.2.4-3
 Requires:	xorg-lib-libXt >= 1.0.0
 Obsoletes:	xfig-doc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -96,64 +91,38 @@ Xfig - це інструмент для створення базової век
 (наприклад, X11 bitmaps, Encapsulated PostScript, LaTeX).
 
 %prep
-%setup -q -n %{name}.%{version}
+%setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-
-%patch5 -p2
-%patch6 -p0
-
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p0
-
-%patch13 -p0
+%patch1 -p2
+%patch2 -p0
+%patch3 -p1
+%patch4 -p1
 
 %build
-xmkmf -a
-%{__make} \
-	CC="%{__cc}" \
-	CDEBUGFLAGS="%{rpmcflags}" \
-	LOCAL_LDFLAGS="%{rpmldflags}" \
-	XFIGLIBDIR=%{_datadir}/xfig \
-	XFIGDOCDIR=%{_docdir}/%{name}-%{version} \
-	XPMINC="-I/usr/include/X11"
+%configure
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}}
 
-%{__make} install install.man \
-	DESTDIR=$RPM_BUILD_ROOT \
-	BINDIR=%{_bindir} \
-	CONFDIR=%{_datadir}/X11 \
-	MANPATH=%{_mandir} \
-	MANSUFFIX="1" \
-	XFIGLIBDIR=%{_datadir}/xfig
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
-install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 cp -a Libraries $RPM_BUILD_ROOT%{_datadir}/xfig
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/xfig/Libraries/*/README
 
-(
-cat $RPM_BUILD_ROOT%{_appdefsdir}/Fig
-echo 'Fig.inches: off'
-) 	> $RPM_BUILD_ROOT%{_appdefsdir}/Fig.new
-mv -f $RPM_BUILD_ROOT%{_appdefsdir}/Fig.new $RPM_BUILD_ROOT%{_appdefsdir}/Fig
+# packaged as %doc
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/xfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Doc/html/ README CHANGES FIGAPPS Doc/TODO Doc/FORMAT*
+%doc CHANGES FIGAPPS README doc/{FORMAT*,TODO,html}
 %attr(755,root,root) %{_bindir}/xfig
-# top dir belongs to transfig, which is required by xfig
-%{_datadir}/xfig/CompKeyDB
-%{_datadir}/xfig/Libraries
+%{_datadir}/xfig
 %{_appdefsdir}/Fig
 #%{_appdefsdir}/Fig-color
 %{_mandir}/man1/xfig.1*

@@ -1,5 +1,5 @@
---- xfig.3.2.5c/Fig.ad~	2012-02-16 21:21:34.000000000 +0100
-+++ xfig.3.2.5c/Fig.ad	2013-10-31 18:22:21.589616162 +0100
+--- xfig.3.2.6a/app-defaults/Fig.in~	2012-02-16 21:21:34.000000000 +0100
++++ xfig.3.2.6a/app-defaults/Fig.in	2013-10-31 18:22:21.589616162 +0100
 @@ -178,9 +178,9 @@
  
  ! If xfig is compiled with I18N option, you may want to uncomment following lines.
