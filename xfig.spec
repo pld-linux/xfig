@@ -12,22 +12,14 @@ Version:	3.2.6a
 Release:	1
 License:	Freeware
 Group:		X11/Applications/Graphics
-Source0:	http://downloads.sourceforge.net/mcj/%{name}-%{version}.tar.xz
+Source0:	https://downloads.sourceforge.net/mcj/%{name}-%{version}.tar.xz
 # Source0-md5:	12c9a1fe3edd3719c8cf1dfec73a5bdb
-#Source1:	%{name}.desktop
-#Source2:	%{name}.png
 Patch0:		%{name}-i18n.patch
 Patch1:		%{name}-3.2.5b-zoom-during-edit.patch
 Patch2:		%{name}-3.2.5b-urwfonts.patch
 Patch3:		%{name}-3.2.5b-app-defaults.patch
 Patch4:		%{name}-desktop.patch
-#Patch0:		%{name}-config.patch
-#Patch2:		38_formatstring.patch
-#Patch8:		%{name}-3.2.5b-pdfimport_mediabox.patch
-#Patch9:		%{name}-3.2.5b-papersize_b1.patch
-#Patch10:	%{name}-3.2.5b-network_images.patch
-#Patch11:	%{name}-3.2.5b-mkstemp.patch
-URL:		http://mcj.sourceforge.net/
+URL:		https://mcj.sourceforge.net/
 BuildRequires:	Xaw3d-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
@@ -39,7 +31,7 @@ BuildRequires:	xz
 Requires:	fig2dev >= 3.2.6
 Requires:	netpbm-progs
 Requires:	xorg-lib-libXt >= 1.0.0
-Obsoletes:	xfig-doc
+Obsoletes:	xfig-doc < 3.2.3d-6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_appdefsdir	%{_datadir}/X11/app-defaults
@@ -124,7 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/xfig
 %{_datadir}/xfig
 %{_appdefsdir}/Fig
-#%{_appdefsdir}/Fig-color
 %{_mandir}/man1/xfig.1*
 %{_pixmapsdir}/xfig.png
 %{_desktopdir}/xfig.desktop
