@@ -8,12 +8,12 @@ Summary(ru.UTF-8):	Инструмент для рисования простой
 Summary(tr.UTF-8):	X11 çizim aracı
 Summary(uk.UTF-8):	Інструмент для малювання простої векторної графіки
 Name:		xfig
-Version:	3.2.6a
+Version:	3.2.8b
 Release:	1
 License:	Freeware
 Group:		X11/Applications/Graphics
 Source0:	https://downloads.sourceforge.net/mcj/%{name}-%{version}.tar.xz
-# Source0-md5:	12c9a1fe3edd3719c8cf1dfec73a5bdb
+# Source0-md5:	049dcf9dc53d6bb7012e716d15d0d512
 Patch0:		%{name}-i18n.patch
 Patch1:		%{name}-3.2.5b-zoom-during-edit.patch
 Patch2:		%{name}-3.2.5b-urwfonts.patch
