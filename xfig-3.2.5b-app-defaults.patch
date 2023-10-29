@@ -1,10 +1,10 @@
 Defaults for xfig. Idea from Roland Rosenfeld <roland@debian.org>
 
---- xfig-3.2.6a/app-defaults/Fig.in.orig	2017-07-30 09:25:21.276709296 +0200
-+++ xfig-3.2.6a/app-defaults/Fig.in	2017-07-30 09:27:04.636708116 +0200
-@@ -10,6 +10,10 @@
- 
- ! some sample settings you may want to change
+--- xfig-3.2.9/app-defaults/Fig.orig	2023-08-15 11:11:22.000000000 +0200
++++ xfig-3.2.9/app-defaults/Fig	2023-10-29 12:13:38.520817101 +0100
+@@ -12,6 +12,10 @@
+ !
+ !-----------------------------------------------------------------------
  
 +! If the following resource is set to false, xfig will use metric units
 +! by default.
@@ -12,4 +12,4 @@ Defaults for xfig. Idea from Roland Rosenfeld <roland@debian.org>
 +
  ! The following fixes a problem that some window managers have
  ! with xfig continually resizing itself
- 
+ Fig*AllowShellResize:		False

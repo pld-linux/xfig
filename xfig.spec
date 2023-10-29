@@ -8,23 +8,24 @@ Summary(ru.UTF-8):	Инструмент для рисования простой
 Summary(tr.UTF-8):	X11 çizim aracı
 Summary(uk.UTF-8):	Інструмент для малювання простої векторної графіки
 Name:		xfig
-Version:	3.2.8b
+Version:	3.2.9
 Release:	1
 License:	Freeware
 Group:		X11/Applications/Graphics
 Source0:	https://downloads.sourceforge.net/mcj/%{name}-%{version}.tar.xz
-# Source0-md5:	049dcf9dc53d6bb7012e716d15d0d512
-Patch0:		%{name}-i18n.patch
+# Source0-md5:	4a338b0e513baedc460e7c64852b0ed5
 Patch1:		%{name}-3.2.5b-zoom-during-edit.patch
-Patch2:		%{name}-3.2.5b-urwfonts.patch
 Patch3:		%{name}-3.2.5b-app-defaults.patch
 Patch4:		%{name}-desktop.patch
 URL:		https://mcj.sourceforge.net/
 BuildRequires:	Xaw3d-devel
+BuildRequires:	fontconfig-devel
+BuildRequires:	ghostscript-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	xorg-lib-libXaw-devel
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXft-devel
 BuildRequires:	xorg-lib-libXpm-devel
 BuildRequires:	xorg-lib-libXt-devel
 BuildRequires:	xz
@@ -84,9 +85,7 @@ Xfig - це інструмент для створення базової век
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p2
-%patch2 -p0
 %patch3 -p1
 %patch4 -p1
 
