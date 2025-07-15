@@ -85,9 +85,9 @@ Xfig - це інструмент для створення базової век
 
 %prep
 %setup -q
-%patch1 -p2
-%patch3 -p1
-%patch4 -p1
+%patch -P1 -p2
+%patch -P3 -p1
+%patch -P4 -p1
 
 %build
 %configure
